@@ -1,0 +1,26 @@
+{
+  "name": "track-your-package",
+  "version": "0.0.0",
+  "dependencies": {
+    "jquery": "^1.9.1",
+    "angular": "1.5.11",
+    "angular-animate": "1.5.11",
+    "angular-loader": "1.5.11",
+    "angular-cookies": "1.5.11",
+    "angular-messages": "1.5.11",
+    "angular-resource": "1.5.11",
+    "angular-sanitize": "1.5.11",
+    "angular-touch": "1.5.11",
+    "angular-aria": "1.5.11",
+    "angular-ui-router": "^0.3.1",
+    "angular-breadcrumb": "^0.4.1",
+    "angular-translate": "2.11.0",
+    "moment": "2.12.0",
+    "moment-jdateformatparser": "1.0.2",
+    "angular-loading-bar": "^0.9.0",
+    "angular-material": "^1.1.1",
+    "lodash": "^4.17.4"
+  },
+  "appPath": "public",
+  "moduleName": "TYP"
+}

@@ -1,0 +1,262 @@
+// Source: app/styles/scss/general.scss
+@import "fonts";
+@import "mixins";
+@import "baseClasses";
+
+body {
+  margin: 0;
+  height: 100%;
+  background-color: #faf8f4;
+  font-family: Segoe UI, Verdana, Arial, Helvetica, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+// General classes
+.input {
+  margin-left: 40px;
+  margin-right: 40px;
+  label {
+    font-weight: 500;
+    font-size: 15px;
+  }
+  input {
+    border-color: black;
+  }
+}
+
+.toolbar {
+  padding-left: 34px;
+  padding-bottom: 10px;
+}
+.mainPageContainer {
+  height: 100%;
+}
+
+// Source: app/scripts/components/leftBar/leftBar.scss
+.leftWrapper {
+  .leftMenuContainer {
+    width: 240px;
+    height: 100%;
+    float: left;
+    position: fixed;
+    top: 60px;
+    z-index: 4;
+    background-color: #42A5F5;
+    //box-shadow: 4px 0px 9px 0px rgba(0, 0, 0, 0.36);
+    .userDetails {
+      height: 150px;
+      padding-left: 20px;
+      .userMenu {
+        .userPicture {
+          margin: 30px 0 0 0;
+          height: 50px;
+          width: 50px;
+          border-radius: 50%;
+          border: 1px solid black;
+          background-color: white;
+        }
+        .name {
+          display: inline;
+          word-wrap: break-word;
+          width: 121px;
+          font-size: 17px;
+          font-weight: 400;
+          color: #ECEFF1;
+          float: right;
+          margin-top: 29px;
+          margin-left: 10px;
+          margin-right: 29px;
+        }
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+    .mainLeftMenu {
+      .menuItem {
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+        box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .26);
+        background-color: #A5D6A7;
+        margin-bottom: 50px;
+        height: 70px;
+        width: 70px;
+        border-radius: 50%;
+        min-height: 0;
+        min-width: 0;
+        .glyph {
+          font-size: 35px;
+          padding: 18px 12px 12px 12px;
+        }
+        &:hover {
+          background-color: #81C784;
+          cursor: pointer;
+        }
+        .md-ripple-container {
+          border-radius: 50%;
+        }
+      }
+    }
+  }
+}
+
+.menuContent {
+  .menuItemButton {
+    & span {
+      margin-left: 25px;
+    }
+    .menuItemGlyph {
+      position: absolute;
+      top: 13px;
+      font-size: 20px;
+      width: 20px;
+    }
+  }
+}
+
+.tooltip {
+  font-size: 15px;
+}
+
+
+// Source: app/scripts/detailedInformation/detailedInformation.style.scss
+.detailedInformation {
+  height: 100%;
+  .pageHeader {
+    &:before {
+      content: 'description';
+    }
+  }
+}
+
+
+// Source: app/scripts/generalInformation/generalInformation.style.scss
+.generalInformation {
+  height: 100%;
+  .pageHeader {
+    &:before {
+      content: 'library_books';
+    }
+  }
+}
+
+
+// Source: app/scripts/login/login.scss
+
+
+
+// Source: app/scripts/mainView/mainView.scss
+.topBarContainer {
+  height: 60px;
+  background: #3F51B5;
+  box-shadow: 0px 4px 9px 0px rgba(0,0,0,0.36);
+  position: fixed;
+  width: 100%;
+  z-index: 3;
+}
+.mainContainer {
+  width: 100%;
+  padding-top: 60px;
+  height: 100%;
+  .mainContent {
+    float: right;
+    height: 100%;
+    width: 100%;
+    padding-left: 240px;
+    .container {
+      height: 100%;
+      .delimiterLine {
+        border-top: 2px solid #ccc;
+      }
+      .pageHeader {
+        position: relative;
+        line-height: 70px;
+        margin-left: 10px;
+        margin-right: 10px;
+        font-size: 25px;
+        z-index: 2;
+        background-color: white;
+        padding: 0;
+        &:before {
+          font-family: "Material Icons";
+
+          position: absolute;
+          top: 10px;
+          font-size: 55px;
+        }
+        .pageTitle {
+          margin-left: 70px;
+          display: inline-block;
+        }
+      }
+    }
+  }
+}
+
+.logoContainer {
+  position: absolute;
+  width: 240px;
+  height: 60px;
+  text-align: center;
+  line-height: 60px;
+}
+
+#loading-bar .bar {
+  position: relative;
+  height: 60px;
+  background: #303F9F;
+}
+
+// Source: app/scripts/register/register.scss
+.registerWrapper {
+  @extend .formWrapper;
+  top: 10%;
+  .keyCodeMark {
+    position: absolute;
+    right: 10px;
+    top: 20px;
+    &:before {
+      font-family: 'Material Icons';
+      font-size: 25px;
+      vertical-align: middle;
+      font-weight: 600;
+    }
+    &.valid {
+      &:before {
+        content: 'check';
+        color: #43A047;
+      }
+    }
+    &.invalid {
+      &:before {
+        content: 'close';
+        color: #E53935;
+      }
+    }
+
+  }
+}
+
+
+// Source: app/scripts/userAccount/userAccount.style.scss
+.userProfile {
+  height: 100%;
+  .pageTitleHeader {
+    &:before {
+      content: 'account_box';
+    }
+  }
+
+  md-input-container{
+    &.inputForm {
+      margin-left: 20px;
+      label {
+        z-index: auto;
+      }
+    }
+  }
+}
