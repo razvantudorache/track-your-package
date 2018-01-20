@@ -39,10 +39,12 @@
     "time-grunt": "^1.0.0"
   },
   "scripts": {
-    "install-global": "npm install -g bower grunt eslint",
-    "postinstall": "bower install"
+    "install-global": "npm install -g bower grunt eslint"
   },
   "dependencies": {
     "express": "^4.16.2"
+  },
+  "engines": {
+    "node": "8.9.0"
   }
 }
