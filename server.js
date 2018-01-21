@@ -14,7 +14,7 @@ mongoose.connect(database.url);
 
 app.use(express.static(__dirname + '/public'));
 app.use('/scripts',  express.static(path.join(__dirname, 'scripts')));
-app.use('/bower_components', express.static(path.join(__dirname, 'bower_components')));
+app.use('/bower_components', express.static(__dirname + '/bower_components'));
 app.use(bodyParser.json());
 
 // routes
