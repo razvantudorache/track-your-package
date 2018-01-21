@@ -6,61 +6,74 @@
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
   <!-- build:css styles/vendor.css -->
   <!-- bower:css -->
   <link rel="stylesheet" href="bower_components/angular-loading-bar/build/loading-bar.css" />
   <link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
+  <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
+  <link rel="stylesheet" href="bower_components/jQuery.mmenu/dist/jquery.mmenu.all.css" />
   <!-- endbower -->
   <!-- endbuild -->
-  <!-- build:css(.tmp) styles/main.css -->
+
+  <!-- build:css styles/main.css -->
   <link rel="stylesheet" href="styles/typ-all.css">
   <!-- endbuild -->
 </head>
-<body ng-app="TYP" ng-strict-di>
+
+<body ng-app="trackYourPackage" ng-strict-di>
 <!--[if lte IE 8]>
 <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
   your browser</a> to improve your experience.</p>
 <![endif]-->
 
-<!-- Add your site or application content here -->
-<div ui-view="">
-  Hello World!
+<top-bar class="topBarContainer"></top-bar>
+<div class="mainContainer" ui-view="">
+  Ceva
 </div>
 
 
 <!-- build:js scripts/vendor.js -->
 <!-- bower:js -->
-<script src="bower_components/jquery/dist/jquery.js"></script>
-<script src="bower_components/angular/angular.js"></script>
-<script src="bower_components/angular-animate/angular-animate.js"></script>
-<script src="bower_components/angular-loader/angular-loader.js"></script>
-<script src="bower_components/angular-cookies/angular-cookies.js"></script>
-<script src="bower_components/angular-messages/angular-messages.js"></script>
-<script src="bower_components/angular-resource/angular-resource.js"></script>
-<script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
-<script src="bower_components/angular-breadcrumb/release/angular-breadcrumb.js"></script>
-<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-<script src="bower_components/angular-touch/angular-touch.js"></script>
-<script src="bower_components/angular-translate/angular-translate.js"></script>
-<script src="bower_components/moment/moment.js"></script>
-<script src="bower_components/moment-jdateformatparser/moment-jdateformatparser.js"></script>
-<script src="bower_components/angular-loading-bar/build/loading-bar.js"></script>
-<script src="bower_components/angular-aria/angular-aria.js"></script>
-<script src="bower_components/angular-material/angular-material.js"></script>
-<script src="bower_components/lodash/lodash.js"></script>
+<script src='bower_components/jquery/dist/jquery.js'></script>
+<script src='bower_components/angular/angular.js'></script>
+<script src='bower_components/angular-animate/angular-animate.js'></script>
+<script src='bower_components/angular-loader/angular-loader.js'></script>
+<script src='bower_components/angular-cookies/angular-cookies.js'></script>
+<script src='bower_components/angular-messages/angular-messages.js'></script>
+<script src='bower_components/angular-resource/angular-resource.js'></script>
+<script src='bower_components/angular-sanitize/angular-sanitize.js'></script>
+<script src='bower_components/angular-touch/angular-touch.js'></script>
+<script src='bower_components/angular-aria/angular-aria.js'></script>
+<script src='bower_components/angular-ui-router/release/angular-ui-router.js'></script>
+<script src='bower_components/angular-breadcrumb/release/angular-breadcrumb.js'></script>
+<script src='bower_components/angular-translate/angular-translate.js'></script>
+<script src='bower_components/moment/moment.js'></script>
+<script src='bower_components/moment-jdateformatparser/moment-jdateformatparser.js'></script>
+<script src='bower_components/angular-loading-bar/build/loading-bar.js'></script>
+<script src='bower_components/angular-material/angular-material.js'></script>
+<script src='bower_components/lodash/lodash.js'></script>
+<script src='bower_components/jQuery.mmenu/dist/jquery.mmenu.all.js'></script>
 <!-- endbower -->
 <!-- endbuild -->
 
-<!-- build:js({.tmp,app}) scripts/scripts.js -->
+<!-- build:js scripts/scripts.js -->
 <script src="scripts/app.js"></script>
-<!--<script src="scripts/app.config.js"></script>-->
+<script src="scripts/app.config.js"></script>
 
 <!-- components -->
+<script src="scripts/components/topMenu/topMenu.directive.js"></script>
+<script src="scripts/components/topBar/topBar.component.js"></script>
 <!-- end components -->
 
 <!-- routes -->
 <!-- end routes-->
 
 <!-- endbuild -->
+
+<script id="__bs_script__">//<![CDATA[
+document.write("<script async src='http://HOST:3001/browser-sync/browser-sync-client.js?v=2.23.5'><\/script>".replace("HOST", location.hostname));
+//]]></script>
+
 </body>
 </html>

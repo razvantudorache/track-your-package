@@ -6,12 +6,12 @@
 module.exports = {
   dist: {
     options: {
-      module: 'TYP',
+      module: 'trackYourPackage',
       htmlmin: '<%= htmlmin.dist.options %>',
       usemin: 'scripts/scripts.js'
     },
     cwd: '<%= yeoman.app %>',
     src: ['scripts/**/*.html'],
-    dest: 'public/.tmp/templateCache.js'
+    dest: '.tmp/templateCache.js'
   }
 };

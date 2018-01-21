@@ -21,7 +21,7 @@ module.exports= {
       },
       {
         expand: true,
-        cwd: 'public/.tmp/images',
+        cwd: '.tmp/images',
         dest: '<%= yeoman.dist %>/images',
         src: ['generated/*']
       }

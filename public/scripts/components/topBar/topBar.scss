@@ -1,0 +1,5 @@
+.topBarContainer {
+  height: 40px;
+  background-color: $materialColorBlue800;
+  @include shadowLevel-2;
+}

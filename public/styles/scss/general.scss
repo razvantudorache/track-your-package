@@ -1,8 +1,9 @@
-@import "fonts";
 @import "mixins";
-@import "baseClasses";
+@import "colorsVar";
 
 body {
+  display: flex;
+  flex-direction: column;
   margin: 0;
   height: 100%;
   background-color: #faf8f4;
@@ -26,10 +27,6 @@ body {
   }
 }
 
-.toolbar {
-  padding-left: 34px;
-  padding-bottom: 10px;
-}
-.mainPageContainer {
-  height: 100%;
+.mainContainer {
+  flex: 1;
 }

@@ -1,0 +1,26 @@
+.topMenuIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 40px;
+  padding: 5px 0;
+  margin-left: 15px;
+  color: $lightColor;
+  &:before {
+    font-family: FontAwesome;
+    content: '\f0c9';
+    font-size: 25px;
+  }
+  &:hover {
+    background-color: $materialColorGrey200;
+    color: $materialColorGrey600;
+    cursor: pointer;
+  }
+}
+.mm-menu {
+  width: 300px;
+  min-width: 300px;
+  max-width: 300px;
+  height: 50vh;
+}

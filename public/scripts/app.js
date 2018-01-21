@@ -1,7 +1,7 @@
 (function () {
   'use strict';
   angular
-    .module('TYP', [
+    .module('trackYourPackage', [
       'ngAnimate',
       'ngCookies',
       'ngMessages',
