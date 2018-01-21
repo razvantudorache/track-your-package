@@ -39,7 +39,8 @@
     "time-grunt": "^1.0.0"
   },
   "scripts": {
-    "install-global": "npm install -g bower grunt eslint"
+    "install-global": "npm install -g bower grunt eslint",
+    "postinstall": "bower install"
   },
   "dependencies": {
     "body-parser": "^1.18.2",
