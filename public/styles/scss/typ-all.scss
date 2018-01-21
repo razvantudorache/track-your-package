@@ -60,9 +60,62 @@ body {
     cursor: pointer;
   }
 }
+
 .mm-menu {
   width: 300px;
   min-width: 300px;
   max-width: 300px;
-  height: 50vh;
+  height: 330px;
+  @include shadowLevel-1;
+  .mm-navbar__title {
+    color: $materialColorGrey800;
+  }
+  .topMenuContainer {
+    .mm-listitem {
+      cursor: pointer;
+      color: $materialColorGrey800;
+      .menuItem {
+        display: flex;
+        align-items: center;
+        &:before {
+          font-family: FontAwesome;
+          font-size: 25px;
+          margin-right: 10px;
+          height: 25px;
+          width: 25px;
+          text-align: center;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        &.profile {
+          &:before {
+            content: '\f007';
+          }
+        }
+        &.users {
+          &:before {
+            content: '\f0c0';
+          }
+        }
+        &.packages {
+          &:before {
+            content: '\f16b';
+          }
+        }
+        &.statistics {
+          &:before {
+            content: '\f080';
+          }
+        }
+        &.logout {
+          &:before {
+            content: '\f08b';
+          }
+        }
+      }
+
+    }
+
+  }
 }

@@ -1,5 +1,5 @@
+'use strict';
 (function () {
-  'use strict';
   angular
     .module('trackYourPackage', [
       'ngAnimate',
@@ -12,6 +12,11 @@
       'angular-loading-bar'
     ])
 
-    .run(['$rootScope', '$state', function ($rootScope, $state) {
-    }]);
+
+    .run(trackYourPackageRun);
+
+  trackYourPackageRun.$inject = ['$rootScope', '$state', '$http'];
+  function trackYourPackageRun($rootScope, $state) {
+  }
+
 })();
