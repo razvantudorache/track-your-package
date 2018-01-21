@@ -12,6 +12,25 @@
    */
   stateConfig.$inject = ['$urlRouterProvider', '$stateProvider'];
   function stateConfig($urlRouterProvider, $stateProvider) {
+    $urlRouterProvider.otherwise(function () {
+      return 'login';
+    });
+
+    $stateProvider
+      .state('login', {
+        url: '/login',
+        templateUrl: 'scripts/login/login.template.html',
+        controller: 'loginController',
+        controllerAs: 'login'
+      })
+      .state('main', {
+        url: '/main',
+        templateUrl: 'scripts/main/main.template.html',
+        controller: 'mainController',
+        controllerAs: 'main'
+      });
+
+
   }
 
   httpConfig.$inject = ['$httpProvider'];

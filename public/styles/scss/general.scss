@@ -2,8 +2,6 @@
 @import "colorsVar";
 
 body {
-  display: flex;
-  flex-direction: column;
   margin: 0;
   height: 100%;
   background-color: #faf8f4;
@@ -27,6 +25,8 @@ body {
   }
 }
 
-.mainContainer {
-  flex: 1;
+.applicationContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
