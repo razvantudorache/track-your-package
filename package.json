@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "install-global": "npm install -g bower grunt eslint",
-    "postinstall": "bower install"
+    "postinstall": "bower install && grunt build"
   },
   "dependencies": {
     "autoprefixer": "^6.4.1",
