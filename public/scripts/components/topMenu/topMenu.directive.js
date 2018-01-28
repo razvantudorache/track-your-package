@@ -4,18 +4,16 @@
   angular.module('trackYourPackage')
     .directive('topMenu', topMenuDirective);
 
-  topMenuDirective.$inject = ['$http'];
-  function topMenuDirective($http) {
+  topMenuDirective.$inject = ['trackYourPackageService'];
+
+  function topMenuDirective(trackYourPackageService) {
     return {
       restrict: 'A',
       link: function (scope, element) {
-
-        //TODO refactor when the login functionality will be implemented. the menu entries will come with the user details
-        $http.get('/api/menu').then(function (response) {
-          buildMenuMarkup(response.data.menuEntries);
-          configureMenu();
-        });
-
+        var userDetails = trackYourPackageService.getUserDetails();
+        var menuEntries = userDetails.menuEntries;
+        buildMenuMarkup(menuEntries);
+        configureMenu();
 
         /**
          * Build the HTML markup for the mmenu plugin

@@ -21,7 +21,8 @@
     "angular-material": "^1.1.1",
     "lodash": "^4.17.4",
     "font-awesome": "Font-Awesome#^4.7.0",
-    "jQuery.mmenu": "mmenu#^7.0.0"
+    "jQuery.mmenu": "mmenu#^7.0.0",
+    "noty": "^3.1.4"
   },
   "appPath": "public",
   "moduleName": "trackYourPackage",
@@ -29,6 +30,12 @@
     "font-awesome": {
       "main": [
         "css/font-awesome.css"
+      ]
+    },
+    "noty": {
+      "main": [
+        "lib/noty.js",
+        "lib/noty.css"
       ]
     }
   }

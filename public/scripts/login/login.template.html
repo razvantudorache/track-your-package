@@ -1,5 +1,5 @@
 <md-content class="loginContainer">
-  <form class="loginForm" name="loginForm" layout="column">
+  <form novalidate class="loginForm" name="loginForm" layout="column">
     <md-input-container class="loginField">
       <label>Username</label>
       <input name="username" required md-no-asterisk ng-model="login.username">
@@ -14,6 +14,6 @@
         <div ng-message="required">Password is required.</div>
       </div>
     </md-input-container>
-    <md-button>Login</md-button>
+    <md-button type="submit" class="md-raised md-primary" ng-click="submitLogin()">Login</md-button>
   </form>
 </md-content>

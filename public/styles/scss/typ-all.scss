@@ -14,6 +14,10 @@ body {
   box-sizing: border-box;
 }
 
+#loading-bar-spinner {
+  display: none;
+}
+
 // General classes
 md-input-container {
   label {
@@ -31,6 +35,13 @@ md-input-container {
   display: flex;
   flex-direction: column;
   height: 100%;
+}
+
+// Source: public/scripts/components/services/notificationMessage/notificationMessage.scss
+.noty_body {
+  min-height: 50px;
+  display: flex;
+  align-items: center;
 }
 
 // Source: public/scripts/components/topBar/topBar.scss

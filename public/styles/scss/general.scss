@@ -13,6 +13,10 @@ body {
   box-sizing: border-box;
 }
 
+#loading-bar-spinner {
+  display: none;
+}
+
 // General classes
 md-input-container {
   label {

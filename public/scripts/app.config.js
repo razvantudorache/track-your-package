@@ -13,6 +13,7 @@
   stateConfig.$inject = ['$urlRouterProvider', '$stateProvider'];
   function stateConfig($urlRouterProvider, $stateProvider) {
     $urlRouterProvider.otherwise(function () {
+      // if login wasn't applied redirect to login
       return 'login';
     });
 
@@ -25,6 +26,9 @@
       })
       .state('main', {
         url: '/main',
+        // params: {
+        //   userDetails: null
+        // },
         templateUrl: 'scripts/main/main.template.html',
         controller: 'mainController',
         controllerAs: 'main'
@@ -44,7 +48,6 @@
   progressbarConfig.$inject = ['cfpLoadingBarProvider'];
   function progressbarConfig(cfpLoadingBarProvider) {
     cfpLoadingBarProvider.parentSelector = '.topBarContainer';
-    cfpLoadingBarProvider.spinnerTemplate = '<div><span class="fa fa-spinner"></span></div>';
   }
 })();
 
