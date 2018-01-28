@@ -12,9 +12,16 @@ var port = process.env.PORT || 3000;
 // configuration
 mongoose.connect(database.url);
 
-app.use(express.static(__dirname + '/public'));
+// load resources from the distribution folder on the production
+if (!process.env.PRODUCTION) {
+  app.use(express.static(__dirname + '/public'));
+} else {
+  app.use(express.static(__dirname + '/public/dist'));
+}
+
 app.use('/scripts',  express.static(path.join(__dirname, 'scripts')));
 app.use('/bower_components', express.static(path.join(__dirname, 'bower_components')));
+
 app.use(bodyParser.json());
 
 // routes

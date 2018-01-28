@@ -1,0 +1,19 @@
+.loginContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  justify-content: center;
+  background: url("images/login.jpg") no-repeat center center fixed;
+  background-size: cover;
+  .loginForm {
+    background-color: #EEEEEE70; //70 is the alpha of the color
+    @include shadowLevel-2;
+    padding: 20px;
+    min-width: 400px;
+    width: 30vw;
+    .loginField {
+      flex: 1;
+    }
+  }
+}

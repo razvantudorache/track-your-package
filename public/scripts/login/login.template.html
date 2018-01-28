@@ -1,0 +1,19 @@
+<md-content class="loginContainer">
+  <form class="loginForm" name="loginForm" layout="column">
+    <md-input-container class="loginField">
+      <label>Username</label>
+      <input name="username" required md-no-asterisk ng-model="login.username">
+      <div ng-messages="loginForm.username.$error">
+        <div ng-message="required">Username is required.</div>
+      </div>
+    </md-input-container>
+    <md-input-container class="loginField">
+      <label>Password</label>
+      <input name="password" type="password" required md-no-asterisk ng-model="login.password">
+      <div ng-messages="loginForm.password.$error">
+        <div ng-message="required">Password is required.</div>
+      </div>
+    </md-input-container>
+    <md-button>Login</md-button>
+  </form>
+</md-content>

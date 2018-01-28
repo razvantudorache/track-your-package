@@ -15,15 +15,9 @@ module.exports= {
         src: [
           '*.{ico,png,txt}',
           '*.html',
-          'images/{,*/}*.{webp}',
+          'styles/images/{,*/}*.*',
           'styles/fonts/{,*/}*.*'
         ]
-      },
-      {
-        expand: true,
-        cwd: '.tmp/images',
-        dest: '<%= yeoman.dist %>/images',
-        src: ['generated/*']
       }
     ]
   },
