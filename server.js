@@ -24,8 +24,12 @@ app.use('/bower_components', express.static(path.join(__dirname, 'bower_componen
 
 app.use(bodyParser.json());
 
+// session config
+require('./app/session/sessionConfig')(app);
+// session middleware
+require('./app/session/sessionMiddleware')(app);
 // routes
-require('./app/routes.js')(app);
+require('./app/routes')(app);
 
 // listen (start app with node server.js)
 app.listen(port);

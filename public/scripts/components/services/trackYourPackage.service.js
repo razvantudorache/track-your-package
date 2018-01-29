@@ -5,14 +5,14 @@
 
   function trackYourPackageService() {
     var me = this;
-    var userDetails = null;
+    var menu = [];
 
-    me.setUserDetails = function (value) {
-      userDetails = value;
+    me.setMenu = function (value) {
+      menu = value;
     };
 
-    me.getUserDetails = function () {
-      return userDetails;
+    me.getMenu = function () {
+      return menu;
     }
   }
 })();

@@ -24,17 +24,24 @@
         controller: 'loginController',
         controllerAs: 'login'
       })
-      .state('main', {
-        url: '/main',
-        // params: {
-        //   userDetails: null
-        // },
-        templateUrl: 'scripts/main/main.template.html',
-        controller: 'mainController',
-        controllerAs: 'main'
+      .state('dashboard', {
+        url: '/dashboard',
+        templateUrl: 'scripts/dashboard/dashboard.template.html',
+        controller: 'dashboardController',
+        controllerAs: 'dashboard',
+        resolve:{
+          menu: function ($http, $state) {
+            return $http.get('/dashboard').then(
+              function successCallback(response) {
+                return response.data.menuEntries;
+              },
+              function errorCallback() {
+                $state.go('login');
+              }
+            );
+          }
+        }
       });
-
-
   }
 
   httpConfig.$inject = ['$httpProvider'];

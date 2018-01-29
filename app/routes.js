@@ -1,50 +1,61 @@
 'use strict';
-// load the menu model
+
 var Menu = require('./models/menu');
 var User = require('./models/user');
 var path = require('path');
+var requireLogin = require('./requireLogin');
 
 module.exports = function (app) {
 
-  // api
+
+
+  /*************************************************
+   * API
+   *************************************************/
+
   // get user details based on the username and password
-  app.get('/api/user', function (req, res) {
-    var userData = req.query;
-    User.find(
+  app.post('/login', function (req, res) {
+    var userData = req.body;
+    User.findOne(
       {
         username: userData.username,
         password: userData.password
       },
-      function (error, data) {
+      function (error, user) {
+        //handle error
         if (error) throw error;
 
-        if (data.length) {
-          var user = data[0]._doc;
-          Menu.find(
-            {
-              type: user.role
-            },
-            function (error, data) {
-              if (error) throw error;
-
-              var response = {
-                userDetails: user.userDetails,
-                success: true
-              };
-
-              response.userDetails.menuEntries =  data[0]._doc.menuEntries;
-
-              res.json(response);
-            });
+        if (user) {
+          req.session.user = user;
+          res.json({
+            success: true
+          });
         } else {
           res.json({
             message: 'Username or password incorrect!',
             success: false
-          })
+          });
         }
       }
     );
+  });
 
+  app.get('/dashboard', requireLogin, function (req, res) {
+    Menu.findOne(
+      {
+        type: req.session.user.role
+      },
+      function (error, menu) {
+        //handle error
+        if (error) throw error;
+        var response = {
+          userDetails: req.session.user.userDetails,
+          menuEntries: menu.menuEntries,
+          success: true
+        };
+
+        res.json(response);
+      });
   });
 
   // application

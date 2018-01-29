@@ -3,6 +3,11 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var Menu = mongoose.model('Menu', new Schema({}), 'Roles');
+var menuSchema = new Schema({
+  type: String,
+  menuEntries: Array
+});
+
+var Menu = mongoose.model('Menu', menuSchema, 'Roles');
 
 module.exports = Menu;

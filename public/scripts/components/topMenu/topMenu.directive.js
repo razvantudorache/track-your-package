@@ -5,25 +5,22 @@
     .directive('topMenu', topMenuDirective);
 
   topMenuDirective.$inject = ['trackYourPackageService'];
-
   function topMenuDirective(trackYourPackageService) {
     return {
       restrict: 'A',
       link: function (scope, element) {
-        var userDetails = trackYourPackageService.getUserDetails();
-        var menuEntries = userDetails.menuEntries;
-        buildMenuMarkup(menuEntries);
+        buildMenuMarkup(trackYourPackageService.getMenu());
         configureMenu();
 
         /**
          * Build the HTML markup for the mmenu plugin
          */
-        function buildMenuMarkup(menuEntries) {
+        function buildMenuMarkup(menu) {
           var $topMenuContainer = $('.topMenuContainer');
           var menuMarkup = "";
 
-          for (var i = 0; i < menuEntries.length; i++) {
-            menuMarkup += "<li><a class='menuItem " + menuEntries[i].cls + "'>" + menuEntries[i].name + "</a></li>";
+          for (var i = 0; i < menu.length; i++) {
+            menuMarkup += "<li><a class='menuItem " + menu[i].cls + "'>" + menu[i].name + "</a></li>";
           }
 
           $topMenuContainer.append(menuMarkup);
