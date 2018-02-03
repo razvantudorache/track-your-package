@@ -8,6 +8,7 @@ body {
   height: 100%;
   background-color: #faf8f4;
   font-family: Segoe UI, Verdana, Arial, Helvetica, sans-serif;
+  overflow: hidden;
 }
 
 * {
@@ -35,6 +36,11 @@ md-input-container {
   display: flex;
   flex-direction: column;
   height: 100%;
+}
+
+.navigationToolbar {
+  margin: 2px;
+  @include shadowLevel-1;
 }
 
 // Source: public/scripts/components/services/notificationMessage/notificationMessage.scss
@@ -132,6 +138,13 @@ md-input-container {
   }
 }
 
+// Source: public/scripts/dashboard/dashboard.scss
+.mainContainer {
+  margin-top: 15px;
+  flex: 1;
+  overflow-y: auto;
+}
+
 // Source: public/scripts/login/login.scss
 .loginContainer {
   display: flex;
@@ -153,7 +166,12 @@ md-input-container {
   }
 }
 
-// Source: public/scripts/main/main.scss
-.mainContainer {
-  flex: 1;
+// Source: public/scripts/profile/profile.scss
+.profileContainer {
+  width: 50vw;
+  margin: 0 auto;
+  .profileForm {
+    @include shadowLevel-1;
+    margin: 2px;
+  }
 }

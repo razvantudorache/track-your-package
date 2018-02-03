@@ -10,13 +10,6 @@
       'ui.router',
       'ngMaterial',
       'angular-loading-bar'
-    ])
-
-
-    .run(trackYourPackageRun);
-
-  trackYourPackageRun.$inject = ['$rootScope', '$state', '$http'];
-  function trackYourPackageRun($rootScope, $state) {
-  }
+    ]);
 
 })();

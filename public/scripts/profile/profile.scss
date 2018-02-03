@@ -1,0 +1,8 @@
+.profileContainer {
+  width: 50vw;
+  margin: 0 auto;
+  .profileForm {
+    @include shadowLevel-1;
+    margin: 2px;
+  }
+}

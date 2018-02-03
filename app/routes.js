@@ -50,6 +50,7 @@ module.exports = function (app) {
         if (error) throw error;
         var response = {
           userDetails: req.session.user.userDetails,
+          role: req.session.user.role,
           menuEntries: menu.menuEntries,
           success: true
         };

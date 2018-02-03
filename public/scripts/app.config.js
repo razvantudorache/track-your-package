@@ -11,6 +11,7 @@
    * @type {string[]}
    */
   stateConfig.$inject = ['$urlRouterProvider', '$stateProvider'];
+
   function stateConfig($urlRouterProvider, $stateProvider) {
     $urlRouterProvider.otherwise(function () {
       // if login wasn't applied redirect to login
@@ -27,20 +28,21 @@
         url: '/dashboard',
         templateUrl: 'scripts/dashboard/dashboard.template.html',
         controller: 'dashboardController',
-        resolve:{
-          user: function ($http, $state) {
+        resolve: {
+          user: ['$http', '$state', function ($http, $state) {
             return $http.get('/dashboard').then(
               function successCallback(response) {
                 return {
                   menu: response.data.menuEntries,
-                  details: response.data.userDetails
+                  details: response.data.userDetails,
+                  role: response.data.role
                 }
               },
               function errorCallback() {
                 $state.go('login');
               }
-            );
-          }
+            )
+          }]
         }
       })
       .state('profile', {
@@ -49,23 +51,11 @@
         templateUrl: 'scripts/profile/profile.template.html',
         controller: 'profileController'
       })
-      .state('users', {
-        url: '/users',
-        parent: 'dashboard',
-        templateUrl: 'scripts/users/users.template.html',
-        controller: 'usersController'
-      })
       .state('packages', {
         url: '/packages',
         parent: 'dashboard',
         templateUrl: 'scripts/packages/packages.template.html',
         controller: 'packagesController'
-      })
-      .state('statistics', {
-        url: '/statistics',
-        parent: 'dashboard',
-        templateUrl: 'scripts/statistics/statistics.template.html',
-        controller: 'statisticsController'
       })
       .state('logout', {
         url: '/logout',
@@ -74,6 +64,7 @@
   }
 
   httpConfig.$inject = ['$httpProvider'];
+
   function httpConfig($httpProvider) {
     $httpProvider.defaults.headers.common = {
       'Content-Type': 'application/json; charset=utf-8',
@@ -82,6 +73,7 @@
   }
 
   progressbarConfig.$inject = ['cfpLoadingBarProvider'];
+
   function progressbarConfig(cfpLoadingBarProvider) {
     cfpLoadingBarProvider.parentSelector = '.topBarContainer';
   }

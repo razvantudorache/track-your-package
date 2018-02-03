@@ -7,6 +7,7 @@ body {
   height: 100%;
   background-color: #faf8f4;
   font-family: Segoe UI, Verdana, Arial, Helvetica, sans-serif;
+  overflow: hidden;
 }
 
 * {
@@ -34,4 +35,9 @@ md-input-container {
   display: flex;
   flex-direction: column;
   height: 100%;
+}
+
+.navigationToolbar {
+  margin: 2px;
+  @include shadowLevel-1;
 }
