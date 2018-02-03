@@ -4,8 +4,9 @@
   angular.module("trackYourPackage")
     .controller('dashboardController', dashboardController);
 
-  dashboardController.$inject = ['trackYourPackageService', 'menu'];
-  function dashboardController(trackYourPackageService, menu) {
-    trackYourPackageService.setMenu(menu);
+  dashboardController.$inject = ['trackYourPackageService', 'user'];
+  function dashboardController(trackYourPackageService, user) {
+    trackYourPackageService.setMenu(user.menu);
+    trackYourPackageService.setUserDetails(user.details);
   }
 })();

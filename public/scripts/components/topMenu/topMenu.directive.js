@@ -5,6 +5,7 @@
     .directive('topMenu', topMenuDirective);
 
   topMenuDirective.$inject = ['trackYourPackageService'];
+
   function topMenuDirective(trackYourPackageService) {
     return {
       restrict: 'A',
@@ -20,7 +21,8 @@
           var menuMarkup = "";
 
           for (var i = 0; i < menu.length; i++) {
-            menuMarkup += "<li><a class='menuItem " + menu[i].cls + "'>" + menu[i].name + "</a></li>";
+            var href = menu[i].route !== 'logout' ? 'dashboard/' + menu[i].route : menu[i].route;
+            menuMarkup += '<li><a href="#/'+ href +'" class="menuItem ' + menu[i].cls + '">' + menu[i].name + '</a></li>';
           }
 
           $topMenuContainer.append(menuMarkup);
@@ -32,12 +34,12 @@
         function configureMenu() {
           var $topMenu = $(element);
           $topMenu.mmenu({
+              "wrappers": ["angular"],
               "extensions": [
                 "pagedim-black",
                 "position-front",
                 "position-top"
-              ],
-              "iconPanels": true
+              ]
             }
           );
 

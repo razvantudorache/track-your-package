@@ -14,26 +14,27 @@
   function stateConfig($urlRouterProvider, $stateProvider) {
     $urlRouterProvider.otherwise(function () {
       // if login wasn't applied redirect to login
-      return 'login';
+      return 'dashboard';
     });
 
     $stateProvider
       .state('login', {
         url: '/login',
         templateUrl: 'scripts/login/login.template.html',
-        controller: 'loginController',
-        controllerAs: 'login'
+        controller: 'loginController'
       })
       .state('dashboard', {
         url: '/dashboard',
         templateUrl: 'scripts/dashboard/dashboard.template.html',
         controller: 'dashboardController',
-        controllerAs: 'dashboard',
         resolve:{
-          menu: function ($http, $state) {
+          user: function ($http, $state) {
             return $http.get('/dashboard').then(
               function successCallback(response) {
-                return response.data.menuEntries;
+                return {
+                  menu: response.data.menuEntries,
+                  details: response.data.userDetails
+                }
               },
               function errorCallback() {
                 $state.go('login');
@@ -41,6 +42,34 @@
             );
           }
         }
+      })
+      .state('profile', {
+        url: '/profile',
+        parent: 'dashboard',
+        templateUrl: 'scripts/profile/profile.template.html',
+        controller: 'profileController'
+      })
+      .state('users', {
+        url: '/users',
+        parent: 'dashboard',
+        templateUrl: 'scripts/users/users.template.html',
+        controller: 'usersController'
+      })
+      .state('packages', {
+        url: '/packages',
+        parent: 'dashboard',
+        templateUrl: 'scripts/packages/packages.template.html',
+        controller: 'packagesController'
+      })
+      .state('statistics', {
+        url: '/statistics',
+        parent: 'dashboard',
+        templateUrl: 'scripts/statistics/statistics.template.html',
+        controller: 'statisticsController'
+      })
+      .state('logout', {
+        url: '/logout',
+        controller: 'logoutController'
       });
   }
 

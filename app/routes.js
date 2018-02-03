@@ -58,6 +58,11 @@ module.exports = function (app) {
       });
   });
 
+  app.get('/logout', function(req, res) {
+    req.session.destroy();
+    res.json({success: true});
+  });
+
   // application
   app.get('/', function (req, res) {
     res.sendFile(path.join(__dirname + 'index.html'));
