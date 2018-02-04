@@ -1,7 +1,3 @@
-/**
- * Created by razvant on 08.09.2016.
- * Watches files for changes and runs tasks based on the changed files
- */
 'use strict';
 
 module.exports = {
@@ -15,7 +11,8 @@ module.exports = {
   },
   css: {
     files: ['<%= yeoman.app %>/scripts/**/*.scss',
-      '<%= yeoman.app %>/styles/scss/*.scss'
+      '<%= yeoman.app %>/styles/scss/*.scss',
+      '!<%= yeoman.app %>/styles/scss/typ-all.scss',
     ],
     tasks: ['concat', 'sass', 'postcss']
   },

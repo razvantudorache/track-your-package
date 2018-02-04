@@ -2,5 +2,30 @@
   height: 55px;
   background-color: $materialColorBlue800;
   @include shadowLevel-2;
-
+  .pageTitle {
+    display: inline-flex;
+    align-items: center;
+    font-size: 25px;
+    color: $lightColor;
+    margin-left: 20px;
+  }
+  .userIcon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    float: right;
+    height: 45px;
+    width: 45px;
+    margin-right: 35px;
+    margin-top: 5px;
+    background-color: $lightColor;
+    &:before {
+      font-family: FontAwesome;
+      content: '\f2bd';
+      font-size: 46px;
+      color: $materialColorGrey500;
+    }
+  }
 }
+

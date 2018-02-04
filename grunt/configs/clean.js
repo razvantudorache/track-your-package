@@ -1,7 +1,3 @@
-/**
- * Created by razvant on 09.09.2016.
- * Empties folders to start fresh
- */
 'use strict';
 
 module.exports = {

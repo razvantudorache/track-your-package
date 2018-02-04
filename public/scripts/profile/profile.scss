@@ -4,5 +4,20 @@
   .profileForm {
     @include shadowLevel-1;
     margin: 2px;
+    padding: 20px 25px 0 25px;
+    .formHeader {
+      font-size: 25px;
+      margin-left: 10px;
+      margin-bottom: 15px;
+    }
+    .formItem {
+      margin-left: 10px;
+      margin-right: 10px;
+    }
+
+  }
+  .navigationToolbar {
+    padding-left: 25px;
+
   }
 }

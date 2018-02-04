@@ -1,7 +1,3 @@
-/**
- * Created by razvant on 09.09.2016.
- * Add vendor prefixed styles
- */
 'use strict';
 
 module.exports = {

@@ -55,8 +55,33 @@ md-input-container {
   height: 55px;
   background-color: $materialColorBlue800;
   @include shadowLevel-2;
-
+  .pageTitle {
+    display: inline-flex;
+    align-items: center;
+    font-size: 25px;
+    color: $lightColor;
+    margin-left: 20px;
+  }
+  .userIcon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    float: right;
+    height: 45px;
+    width: 45px;
+    margin-right: 35px;
+    margin-top: 5px;
+    background-color: $lightColor;
+    &:before {
+      font-family: FontAwesome;
+      content: '\f2bd';
+      font-size: 46px;
+      color: $materialColorGrey500;
+    }
+  }
 }
+
 
 // Source: public/scripts/components/topMenu/topMenu.scss
 .topMenuIcon {
@@ -173,5 +198,20 @@ md-input-container {
   .profileForm {
     @include shadowLevel-1;
     margin: 2px;
+    padding: 20px 25px 0 25px;
+    .formHeader {
+      font-size: 25px;
+      margin-left: 10px;
+      margin-bottom: 15px;
+    }
+    .formItem {
+      margin-left: 10px;
+      margin-right: 10px;
+    }
+
+  }
+  .navigationToolbar {
+    padding-left: 25px;
+
   }
 }

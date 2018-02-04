@@ -1,7 +1,3 @@
-/**
- * Created by razvant on 09.09.2016.
- * Performs rewrites based on filerev and the useminPrepare configuration
- */
 'use strict';
 
 module.exports = {

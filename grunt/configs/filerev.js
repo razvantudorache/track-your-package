@@ -1,7 +1,3 @@
-/**
- * Created by razvant on 09.09.2016.
- * Renames files for browser caching purposes
- */
 'use strict';
 
 module.exports = {

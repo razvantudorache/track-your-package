@@ -1,6 +1,3 @@
-/**
- * Created by razvant on 08.09.2016.
- */
 'use strict';
 
 module.exports = {

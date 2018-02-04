@@ -1,22 +1,25 @@
 <md-content class="profileContainer">
   <form class="profileForm" name="profileForm" layout="column">
-    <md-input-container>
-      <label>First name</label>
-      <input name="firstName" ng-model="userDetails.firstName">
-    </md-input-container>
-    <md-input-container>
-      <label>Last name</label>
-      <input name="lastName" ng-model="userDetails.lastName">
-    </md-input-container>
-    <md-input-container>
+    <label class="formHeader">Personal information</label>
+    <md-content layout="row">
+      <md-input-container flex class="formItem">
+        <label>First name</label>
+        <input name="firstName" ng-model="userDetails.firstName">
+      </md-input-container>
+      <md-input-container flex class="formItem">
+        <label>Last name</label>
+        <input name="lastName" ng-model="userDetails.lastName">
+      </md-input-container>
+    </md-content>
+    <md-input-container class="formItem">
       <label>Address</label>
       <input name="address" ng-model="userDetails.address">
     </md-input-container>
-    <md-input-container>
+    <md-input-container class="formItem">
       <label>Email</label>
       <input name="email" ng-model="userDetails.email">
     </md-input-container>
-    <md-input-container>
+    <md-input-container class="formItem">
       <label>Phone</label>
       <input name="phone" ng-model="userDetails.phone">
     </md-input-container>
