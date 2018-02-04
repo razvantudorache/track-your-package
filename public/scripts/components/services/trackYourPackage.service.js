@@ -22,6 +22,6 @@
 
     me.getUserDetails = function () {
       return details;
-    }
+    };
   }
 })();

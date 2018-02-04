@@ -19,6 +19,7 @@
 
     /**
      * Build the special routes based on the user role
+     * @returns {void}
      */
     function addSpecialStates() {
       switch (user.role) {
@@ -58,6 +59,6 @@
       var currentState = trans.router.stateService.current;
 
       $scope.pageTitle = _.capitalize(currentState.name);
-    })
+    });
   }
 })();

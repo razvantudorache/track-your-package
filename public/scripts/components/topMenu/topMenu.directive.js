@@ -15,6 +15,8 @@
 
         /**
          * Build the HTML markup for the mmenu plugin
+         * @param {Array} menu - list with entries
+         * @returns {void}
          */
         function buildMenuMarkup(menu) {
           var $topMenuContainer = $('.topMenuContainer');
@@ -30,6 +32,7 @@
 
         /**
          * Add configuration for the mmenu plugin
+         * @returns {void}
          */
         function configureMenu() {
           var $topMenu = $(element);

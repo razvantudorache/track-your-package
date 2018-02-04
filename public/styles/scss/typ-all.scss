@@ -52,9 +52,10 @@ md-input-container {
 
 // Source: public/scripts/components/topBar/topBar.scss
 .topBarContainer {
-  height: 40px;
+  height: 55px;
   background-color: $materialColorBlue800;
   @include shadowLevel-2;
+
 }
 
 // Source: public/scripts/components/topMenu/topMenu.scss
@@ -73,8 +74,7 @@ md-input-container {
     font-size: 25px;
   }
   &:hover {
-    background-color: $materialColorGrey200;
-    color: $materialColorGrey600;
+    color: $materialColorGrey300;
     cursor: pointer;
   }
 }

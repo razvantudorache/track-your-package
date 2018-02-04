@@ -4,8 +4,8 @@
   angular.module('trackYourPackage')
     .controller('profileController', profileController);
 
-  profileController.$inject = ['$scope', 'trackYourPackageService', '$state'];
-  function profileController($scope, trackYourPackageService, $state) {
+  profileController.$inject = ['$scope', 'trackYourPackageService'];
+  function profileController($scope, trackYourPackageService) {
 
     $scope.userDetails = trackYourPackageService.getUserDetails();
   }

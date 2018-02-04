@@ -25,6 +25,6 @@
         text: message,
         type: type
       }).show();
-    }
+    };
   }
 })();

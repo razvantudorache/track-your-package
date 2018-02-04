@@ -36,12 +36,12 @@
                   menu: response.data.menuEntries,
                   details: response.data.userDetails,
                   role: response.data.role
-                }
+                };
               },
               function errorCallback() {
                 $state.go('login');
               }
-            )
+            );
           }]
         }
       })

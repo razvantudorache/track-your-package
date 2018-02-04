@@ -2,9 +2,5 @@
 
 (function () {
   angular.module('trackYourPackage')
-    .controller('statisticsController', statisticsController);
-
-  function statisticsController() {
-
-  }
+    .controller('statisticsController', angular.noop);
 })();

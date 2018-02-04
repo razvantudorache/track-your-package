@@ -15,7 +15,8 @@
     "jQuery": 1,
     "translations": 1,
     "formats": 1,
-    "moment": 1
+    "moment": 1,
+    "Noty": 1
   },
   "rules": {
     "eqeqeq": 2,
