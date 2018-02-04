@@ -22,7 +22,8 @@
   width: 300px;
   min-width: 300px;
   max-width: 300px;
-  height: 330px;
+  height: auto;
+  max-height: 350px;
   @include shadowLevel-1;
   .mm-navbar .mm-navbar__title {
     color: $materialColorGrey800;
@@ -44,6 +45,11 @@
           display: flex;
           align-items: center;
           justify-content: center;
+        }
+        &.dashboard{
+          &:before {
+            content: '\f26c';
+          }
         }
         &.profile {
           &:before {

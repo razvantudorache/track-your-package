@@ -9,6 +9,7 @@
   function topMenuDirective(trackYourPackageService) {
     return {
       restrict: 'A',
+      template: '<ul class="topMenuContainer"></ul>',
       link: function (scope, element) {
         buildMenuMarkup(trackYourPackageService.getMenu());
         configureMenu();
@@ -23,7 +24,16 @@
           var menuMarkup = "";
 
           for (var i = 0; i < menu.length; i++) {
-            var href = menu[i].route !== 'logout' ? 'dashboard/' + menu[i].route : menu[i].route;
+            var href = '';
+            switch (menu[i].route) {
+              case 'dashboard':
+              case 'logout':
+                href = menu[i].route;
+                break;
+              default:
+                href = 'dashboard/' + menu[i].route;
+            }
+
             menuMarkup += '<li><a href="#/'+ href +'" class="menuItem ' + menu[i].cls + '">' + menu[i].name + '</a></li>';
           }
 

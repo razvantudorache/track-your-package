@@ -80,6 +80,19 @@ md-input-container {
       color: $materialColorGrey500;
     }
   }
+  .user {
+    font-size: 19px;
+    color: $lightColor;
+    float: right;
+    margin-right: 15px;
+    height: 100%;
+    display: inline-flex;
+    align-items: center;
+    &:hover {
+      cursor: pointer;
+      text-decoration: underline;
+    }
+  }
 }
 
 
@@ -108,7 +121,8 @@ md-input-container {
   width: 300px;
   min-width: 300px;
   max-width: 300px;
-  height: 330px;
+  height: auto;
+  max-height: 350px;
   @include shadowLevel-1;
   .mm-navbar .mm-navbar__title {
     color: $materialColorGrey800;
@@ -130,6 +144,11 @@ md-input-container {
           display: flex;
           align-items: center;
           justify-content: center;
+        }
+        &.dashboard{
+          &:before {
+            content: '\f26c';
+          }
         }
         &.profile {
           &:before {

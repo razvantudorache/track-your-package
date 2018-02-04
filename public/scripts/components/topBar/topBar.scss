@@ -27,5 +27,18 @@
       color: $materialColorGrey500;
     }
   }
+  .user {
+    font-size: 19px;
+    color: $lightColor;
+    float: right;
+    margin-right: 15px;
+    height: 100%;
+    display: inline-flex;
+    align-items: center;
+    &:hover {
+      cursor: pointer;
+      text-decoration: underline;
+    }
+  }
 }
 

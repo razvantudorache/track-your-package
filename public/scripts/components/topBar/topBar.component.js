@@ -10,7 +10,11 @@
       }
     });
 
-  function topBarController() {
+  topBarController.$inject = ['trackYourPackageService'];
+  function topBarController(trackYourPackageService) {
     var me = this;
+
+    var userDetails = trackYourPackageService.getUserDetails();
+    me.user = userDetails.firstName + ' ' + userDetails.lastName;
   }
 })();
