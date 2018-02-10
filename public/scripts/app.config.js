@@ -13,7 +13,7 @@
   stateConfig.$inject = ['$urlRouterProvider', '$stateProvider'];
 
   function stateConfig($urlRouterProvider, $stateProvider) {
-    $urlRouterProvider.otherwise('dashboard');
+    $urlRouterProvider.otherwise('login');
 
     $stateProvider
       .state('login', {
