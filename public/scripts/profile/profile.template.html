@@ -1,5 +1,5 @@
 <md-content class="profileContainer">
-  <form class="profileForm" novalidate name="profileForm" layout="column">
+  <form class="form" name="profileForm" layout="column" novalidate ng-submit="save()">
     <label class="formHeader">Personal information</label>
     <md-content layout="row">
 
@@ -49,7 +49,9 @@
         </div>
       </md-input-container>
     </md-content>
+  </form>
 
+  <form class="form changePasswordForm" name="changePasswordForm" layout="column" novalidate>
     <label class="formHeader">Change password</label>
     <md-input-container flex class="formItem">
       <label>Old password</label>
@@ -81,10 +83,12 @@
         </div>
       </div>
     </md-input-container>
-
+    <md-button type="submit" class="md-raised md-primary" ng-click="changePassword()" ng-disabled="!changePasswordForm.$valid || buttonChangeDisabled">Change password
+    </md-button>
   </form>
+
   <div class="navigationToolbar">
-    <md-button class="md-raised md-primary" ng-click="save()" ng-disabled="!profileForm.$valid || buttonDisabled">Save
+    <md-button type="submit" class="md-raised md-primary" ng-click="save()" ng-disabled="!profileForm.$valid || buttonSaveDisabled">Save
     </md-button>
   </div>
 </md-content>

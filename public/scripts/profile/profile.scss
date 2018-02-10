@@ -1,7 +1,7 @@
 .profileContainer {
   width: 50vw;
   margin: 0 auto;
-  .profileForm {
+  .form {
     @include shadowLevel-1;
     margin: 2px;
     padding: 20px 25px 0 25px;
@@ -14,7 +14,11 @@
       margin-left: 10px;
       margin-right: 10px;
     }
-
+    &.changePasswordForm {
+      .formItem {
+        width: 150px;
+      }
+    }
   }
   .navigationToolbar {
     padding-left: 25px;

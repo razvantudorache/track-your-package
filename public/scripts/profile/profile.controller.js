@@ -11,17 +11,29 @@
 
     me.$onInit = function () {
       $scope.userDetails = trackYourPackageService.getUserDetails();
-      $scope.buttonDisabled = false;
+      $scope.buttonSaveDisabled = false;
 
+      /**
+       * Update user details
+       * @return {void}
+       */
       $scope.save = function () {
-        $scope.buttonDisabled = true;
+        $scope.buttonSaveDisabled = true;
 
         $http.post('/updateUserDetails', $scope.userDetails).then(function (response) {
-          $scope.buttonDisabled = false;
+          $scope.buttonSaveDisabled = false;
           trackYourPackageService.setUserDetails(response.data);
           $state.reload();
         });
-      }
+      };
+
+      /**
+       * Change password of user
+       * @return {void}
+       */
+      $scope.changePassword = function () {
+        //
+      };
     };
   }
 })();
