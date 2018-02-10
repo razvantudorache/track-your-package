@@ -29,6 +29,7 @@
           user: ['$http', '$state', function ($http, $state) {
             return $http.get('/dashboard').then(
               function successCallback(response) {
+                $state.current.isAuthenticatied = true;
                 return {
                   menu: response.data.menuEntries,
                   details: response.data.userDetails,
@@ -36,7 +37,7 @@
                 };
               },
               function errorCallback() {
-                $state.go('login');
+                $state.current.isAuthenticatied = false;
               }
             );
           }]
