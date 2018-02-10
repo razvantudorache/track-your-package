@@ -12,31 +12,34 @@
     me.$onInit = function () {
       $scope.userDetails = trackYourPackageService.getUserDetails();
       $scope.buttonSaveDisabled = false;
-
-      /**
-       * Update user details
-       * @return {void}
-       */
-      $scope.save = function () {
-        $scope.buttonSaveDisabled = true;
-
-        $http.post('/updateUserDetails', $scope.userDetails).then(function (response) {
-          $scope.buttonSaveDisabled = false;
-          trackYourPackageService.setUserDetails(response.data);
-          $state.reload();
-        });
-      };
-
-      /**
-       * Change password of user
-       * @return {void}
-       */
-      $scope.openChangePasswordDialog = function () {
-        $mdDialog.show({
-          controller: 'changePasswordDialogController',
-          templateUrl: 'scripts/profile/changePasswordDialog.template.html'
-        });
-      };
+      $scope.save = save;
+      $scope.openChangePasswordDialog = openChangePasswordDialog;
     };
+
+    /**
+     * Update user details
+     * @return {void}
+     */
+    function save() {
+      $scope.buttonSaveDisabled = true;
+
+      $http.post('/updateUserDetails', $scope.userDetails).then(function (response) {
+        $scope.buttonSaveDisabled = false;
+
+        trackYourPackageService.setUserDetails(response.data);
+        $state.reload();
+      });
+    }
+
+    /**
+     * Change password of user
+     * @return {void}
+     */
+    function openChangePasswordDialog() {
+      $mdDialog.show({
+        controller: 'changePasswordDialogController',
+        templateUrl: 'scripts/profile/changePasswordDialog.template.html'
+      });
+    }
   }
 })();
