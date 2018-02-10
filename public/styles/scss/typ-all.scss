@@ -41,6 +41,29 @@ md-input-container {
 .navigationToolbar {
   margin: 2px;
   @include shadowLevel-1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+md-dialog {
+  .dialogTitle {
+    height: 35px;
+    font-size: 20px;
+    color: $materialColorGrey800;
+    margin-top: 20px;
+    margin-left: 25px;
+  }
+  .dialogContent {
+    margin: 25px;
+  }
+  .dialogToolbar {
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+
+md-content {
+  background-color: $lightColor;
 }
 
 // Source: public/scripts/components/services/notificationMessage/notificationMessage.scss
@@ -210,11 +233,18 @@ md-input-container {
   }
 }
 
+// Source: public/scripts/profile/changePasswordDialog.scss
+.changePasswordDialog {
+  .changePasswordForm {
+    width: 400px;
+  }
+}
+
 // Source: public/scripts/profile/profile.scss
 .profileContainer {
   width: 50vw;
   margin: 0 auto;
-  .form {
+  .profileForm {
     @include shadowLevel-1;
     margin: 2px;
     padding: 20px 25px 0 25px;
@@ -227,15 +257,8 @@ md-input-container {
       margin-left: 10px;
       margin-right: 10px;
     }
-    &.changePasswordForm {
-      .formItem {
-        width: 150px;
-      }
-    }
   }
   .navigationToolbar {
     padding-left: 25px;
-    display: flex;
-    justify-content: flex-end;
   }
 }

@@ -1,6 +1,7 @@
 'use strict';
 
 var mongoose = require('mongoose');
+var bcrypt = require('bcrypt');
 var Schema = mongoose.Schema;
 
 var userSchema = new Schema({
@@ -16,6 +17,10 @@ var userSchema = new Schema({
   "companyID": Number,
   "role": String
 });
+
+userSchema.methods.comparePassword = function(password) {
+  return bcrypt.compare(password, this.password);
+};
 
 var User = mongoose.model('User', userSchema, 'Users');
 

@@ -40,4 +40,27 @@ md-input-container {
 .navigationToolbar {
   margin: 2px;
   @include shadowLevel-1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+md-dialog {
+  .dialogTitle {
+    height: 35px;
+    font-size: 20px;
+    color: $materialColorGrey800;
+    margin-top: 20px;
+    margin-left: 25px;
+  }
+  .dialogContent {
+    margin: 25px;
+  }
+  .dialogToolbar {
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+
+md-content {
+  background-color: $lightColor;
 }

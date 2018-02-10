@@ -19,7 +19,7 @@
   function applicationRun($transitions, $state) {
     // redirect the user to the login page if is not authenticated to have access to the dashboard route
     $transitions.onFinish({
-      to: 'dashboard'
+      entering: 'dashboard'
     }, function (trans) {
       var currentState = trans.router.stateService.current;
 

@@ -13,7 +13,7 @@
         theme: 'nest',
         killer: true,
         closeWith: ['button'],
-        timeout: 1000
+        timeout: 3000
       });
     };
 
