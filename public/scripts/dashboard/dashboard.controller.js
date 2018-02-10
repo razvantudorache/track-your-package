@@ -15,6 +15,12 @@
       $scope.pageTitle = _.capitalize($state.current.name);
 
       addSpecialStates();
+
+      $transitions.onSuccess({}, function(trans){
+        var currentState = trans.router.stateService.current;
+
+        $scope.pageTitle = _.capitalize(currentState.name);
+      });
     };
 
     /**
@@ -54,11 +60,5 @@
           break;
       }
     }
-
-    $transitions.onSuccess({}, function(trans){
-      var currentState = trans.router.stateService.current;
-
-      $scope.pageTitle = _.capitalize(currentState.name);
-    });
   }
 })();

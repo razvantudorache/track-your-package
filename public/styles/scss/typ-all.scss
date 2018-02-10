@@ -231,6 +231,8 @@ md-input-container {
   }
   .navigationToolbar {
     padding-left: 25px;
+    display: flex;
+    justify-content: flex-end;
 
   }
 }

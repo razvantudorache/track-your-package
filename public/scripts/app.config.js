@@ -13,10 +13,7 @@
   stateConfig.$inject = ['$urlRouterProvider', '$stateProvider'];
 
   function stateConfig($urlRouterProvider, $stateProvider) {
-    $urlRouterProvider.otherwise(function () {
-      // if login wasn't applied redirect to login
-      return 'dashboard';
-    });
+    $urlRouterProvider.otherwise('dashboard');
 
     $stateProvider
       .state('login', {

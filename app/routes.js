@@ -64,6 +64,16 @@ module.exports = function (app) {
     res.json({success: true});
   });
 
+  app.post('/updateUserDetails', function (req, res) {
+    var userDetails = req.body;
+
+    User.findOneAndUpdate({username: req.session.user.username}, {userDetails: userDetails}, {new: true}, function (err, user) {
+      if (err) throw err;
+
+      res.json(user.userDetails);
+    })
+  });
+
   // application
   app.get('/', function (req, res) {
     res.sendFile(path.join(__dirname + 'index.html'));
