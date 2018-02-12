@@ -13,7 +13,8 @@
   stateConfig.$inject = ['$urlRouterProvider', '$stateProvider'];
 
   function stateConfig($urlRouterProvider, $stateProvider) {
-    $urlRouterProvider.otherwise('login');
+    var userRole = "";
+    $urlRouterProvider.otherwise('dashboard');
 
     $stateProvider
       .state('login', {
@@ -30,6 +31,7 @@
             return $http.get('/dashboard').then(
               function successCallback(response) {
                 $state.current.isAuthenticatied = true;
+                userRole = response.data.role;
                 return {
                   menu: response.data.menuEntries,
                   details: response.data.userDetails,
@@ -48,6 +50,32 @@
         parent: 'dashboard',
         templateUrl: 'scripts/profile/profile.template.html',
         controller: 'profileController'
+      })
+      .state('users', {
+        url: '/users',
+        parent: 'dashboard',
+        templateUrl: 'scripts/users/users.template.html',
+        controller: 'usersController',
+        onEnter: ["$state", function ($state) {
+          if (userRole === 'courier') {
+            return $state.target('dashboard');
+          } else {
+            return true
+          }
+        }]
+      })
+      .state('statistics', {
+        url: '/statistics',
+        parent: 'dashboard',
+        templateUrl: 'scripts/statistics/statistics.template.html',
+        controller: 'statisticsController',
+        onEnter: ["$state", function ($state) {
+          if (userRole === 'courier') {
+            return $state.target('dashboard');
+          } else {
+            return true
+          }
+        }]
       })
       .state('packages', {
         url: '/packages',
