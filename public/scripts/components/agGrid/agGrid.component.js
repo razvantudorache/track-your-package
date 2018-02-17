@@ -19,14 +19,12 @@
       var defaultGridOptions = {
         columnDefs: me.gridColumns,
         onGridReady: onGridReadyHandler,
+        onGridSizeChanged: onGridSizeChangedHandler,
         animateRows: true,
         rowSelection: 'single',
         suppressContextMenu: true,
         suppressMenuHide: true,
-        enableSorting: true,
-        enableServerSideSorting: true,
-        enableFilter: true,
-        enableServerSideFilter: true,
+        suppressCellSelection: true,
         floatingFilter: false,
         cacheOverflowSize: 2,
         rowModelType: 'infinite',
@@ -57,12 +55,29 @@
     }
 
     /**
-     * Get data from the server
+     * Handler when grid resize
      */
-    function requestGridData() {
-      $http.get(me.gridProperties.url).then(function (result) {
-      })
+    function onGridSizeChangedHandler() {
+      $scope.gridOptions.api.sizeColumnsToFit();
     }
 
+    /**
+     * Get data from the server
+     * @param params
+     */
+    function requestGridData(params) {
+      debugger;
+      $http.get(me.gridProperties.url, {
+        params: {
+          start: params.startRow,
+          limit: $scope.gridOptions.paginationPageSize
+        }
+      }).then(function (response) {
+        var results = response.data.docs;
+        var total = response.data.total;
+
+        params.successCallback(results, total);
+      });
+    }
   }
 }());

@@ -13,15 +13,38 @@
     me.gridColumns = [
       {
         headerName: 'First name',
-        field: 'firstName'
+        field: 'firstName',
+        minWidth: 150
       },
       {
         headerName: 'Last name',
-        field: 'lastName'
+        field: 'lastName',
+        minWidth: 150
       },
       {
         headerName: 'Username',
-        field: 'username'
+        field: 'username',
+        minWidth: 150
+      },
+      {
+        headerName: 'Role',
+        field: 'role',
+        minWidth: 150
+      },
+      {
+        headerName: 'Email',
+        field: 'email',
+        minWidth: 150
+      },
+      {
+        headerName: 'Phone',
+        field: 'phone',
+        minWidth: 150
+      },
+      {
+        headerName: 'Company ID',
+        field: 'companyID',
+        minWidth: 150
       }
     ];
 

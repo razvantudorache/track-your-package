@@ -133,6 +133,11 @@ module.exports = function (app) {
 
   // get the list with users
   app.get('/userList', requireLogin, function (request, response) {
+    var params = {
+      offset: parseInt(request.query.start),
+      limit: parseInt(request.query.limit)
+    };
+
     if (request.session.user.role !== 'courier') {
       var options = {};
       if (request.session.user.role === 'admin') {
@@ -141,9 +146,13 @@ module.exports = function (app) {
         }
       }
 
-      User.paginate(options, {offset: 1, limit: 2}, function (error, result) {
-        for (var i = 0; i < result.docs.length; i++) {
-          result.docs[i] = result.docs[i].toJSON();
+      User.paginate(options, params, function (error, result) {
+        if (result) {
+          for (var i = 0; i < result.docs.length; i++) {
+            result.docs[i] = result.docs[i].toJSON();
+          }
+        } else {
+          result = {};
         }
 
         response.json(result);
