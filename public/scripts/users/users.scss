@@ -1,0 +1,8 @@
+.usersContainer {
+  height: 100%;
+  margin-left: 25px;
+  margin-right: 25px;
+  @include shadowLevel-2;
+  display: flex;
+  flex-direction: column;
+}

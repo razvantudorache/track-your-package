@@ -1,5 +1,6 @@
 'use strict';
 (function () {
+  agGrid.initialiseAgGridWithAngular1(angular);
   angular
     .module('trackYourPackage', [
       'ngAnimate',
@@ -9,7 +10,8 @@
       'ngSanitize',
       'ui.router',
       'ngMaterial',
-      'angular-loading-bar'
+      'angular-loading-bar',
+      'agGrid'
     ])
 
     .run(applicationRun);

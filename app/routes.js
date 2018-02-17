@@ -3,6 +3,7 @@
 var Menu = require('./models/menu');
 var User = require('./models/user');
 var path = require('path');
+var _ = require('lodash');
 var bcrypt = require('bcrypt');
 var saltRounds = 10;
 var requireLogin = require('./requireLogin');
@@ -60,8 +61,7 @@ module.exports = function (app) {
         if (error) throw error;
 
         var responseObject = {
-          userDetails: request.session.user.userDetails,
-          role: request.session.user.role,
+          userDetails: request.session.user,
           menuEntries: menu.menuEntries,
           success: true
         };
@@ -77,55 +77,81 @@ module.exports = function (app) {
   });
 
   // update the user details from the profile page
-  app.post('/updateUserDetails', function (request, response) {
+  app.post('/updateUserDetails', requireLogin, function (request, response) {
     var userDetails = request.body;
 
-    User.findOneAndUpdate({username: request.session.user.username}, {userDetails: userDetails}, {new: true}, function (error, user) {
+    User.findOneAndUpdate({username: request.session.user.username}, {
+      firstName: userDetails.firstName,
+      lastName: userDetails.lastName,
+      email: userDetails.email,
+      phone: userDetails.phone
+    }, {new: true}, function (error, user) {
       if (error) throw error;
 
-      response.json(user.userDetails);
+      response.json(user.toJSON());
     });
   });
 
   // update the password from the profile page
-  app.post('/updatePassword', function (request, response) {
-      var oldPassword = request.body.oldPassword;
-      var newPassword = request.body.newPassword;
+  app.post('/updatePassword', requireLogin, function (request, response) {
+    var oldPassword = request.body.oldPassword;
+    var newPassword = request.body.newPassword;
 
-      User.findOne({
-        username: request.session.user.username
-      }, function (error, user) {
-        if (error) throw error;
+    User.findOne({
+      username: request.session.user.username
+    }, function (error, user) {
+      if (error) throw error;
 
-        if (user) {
-          user.comparePassword(oldPassword).then(function (res) {
-            if (res) {
-              bcrypt.genSalt(saltRounds, function (err, salt) {
-                bcrypt.hash(newPassword, salt, function (err, hash) {
-                  User.where({username: request.session.user.username}).update({$set: {password: hash}}, function (error, res) {
+      if (user) {
+        user.comparePassword(oldPassword).then(function (res) {
+          if (res) {
+            bcrypt.genSalt(saltRounds, function (err, salt) {
+              bcrypt.hash(newPassword, salt, function (err, hash) {
+                User.findOneAndUpdate({username: request.session.user.username}, {password: hash}, function (error, res) {
                     response.json({
                       success: true,
                       message: 'Password changed successfully!'
                     });
-                  });
                 });
               });
-            } else {
-              response.json({
-                success: false,
-                message: 'Username or old password not match!'
-              });
-            }
-          });
-        } else {
-          response.json({
-            success: false,
-            message: 'Username or old password not match!'
-          });
+            });
+          } else {
+            response.json({
+              success: false,
+              message: 'Username or old password not match!'
+            });
+          }
+        });
+      } else {
+        response.json({
+          success: false,
+          message: 'Username or old password not match!'
+        });
+      }
+    });
+  });
+
+  // get the list with users
+  app.get('/userList', requireLogin, function (request, response) {
+    if (request.session.user.role !== 'courier') {
+      var options = {};
+      if (request.session.user.role === 'admin') {
+        options = {
+          companyID: request.session.user.companyID
         }
-      });
+      }
+
+      User.paginate(options, {offset: 1, limit: 2}, function (error, result) {
+        for (var i = 0; i < result.docs.length; i++) {
+          result.docs[i] = result.docs[i].toJSON();
+        }
+
+        response.json(result);
+      })
+    } else {
+      response.sendStatus(401);
     }
-  );
+  });
 
   // application
   app.get('/', function (req, res) {

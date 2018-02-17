@@ -10,7 +10,6 @@
 
     me.$onInit = function () {
       trackYourPackageService.setMenu(user.menu);
-      user.details.role = user.role;
       trackYourPackageService.setUserDetails(user.details);
 
       $scope.pageTitle = _.capitalize($state.current.name);

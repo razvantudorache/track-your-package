@@ -44,9 +44,11 @@
     "karma-phantomjs-launcher": "^1.0.0",
     "load-grunt-configs": "^1.0.0",
     "load-grunt-tasks": "^3.5.2",
+    "lodash": "^4.17.5",
     "moment": "^2.15.0",
     "mongodb": "^3.0.1",
     "mongoose": "^5.0.1",
+    "mongoose-paginate": "^5.0.3",
     "phantomjs-prebuilt": "^2.1.5",
     "time-grunt": "^1.0.0"
   },

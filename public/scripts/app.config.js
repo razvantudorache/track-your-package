@@ -35,7 +35,6 @@
                 return {
                   menu: response.data.menuEntries,
                   details: response.data.userDetails,
-                  role: response.data.role
                 };
               },
               function errorCallback() {
@@ -56,6 +55,7 @@
         parent: 'dashboard',
         templateUrl: 'scripts/users/users.template.html',
         controller: 'usersController',
+        controllerAs: 'users',
         onEnter: ["$state", function ($state) {
           if (userRole === 'courier') {
             return $state.target('dashboard');

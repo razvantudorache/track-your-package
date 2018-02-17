@@ -66,6 +66,16 @@ md-content {
   background-color: $lightColor;
 }
 
+// Source: public/scripts/components/agGrid/agGrid.scss
+ag-grid {
+  height: 100%;
+  flex: 1;
+  .agGrid {
+    height: 100%
+  }
+}
+
+
 // Source: public/scripts/components/services/notificationMessage/notificationMessage.scss
 .noty_body {
   min-height: 50px;
@@ -127,7 +137,7 @@ md-content {
   height: 100%;
   width: 40px;
   padding: 5px 0;
-  margin-left: 15px;
+  margin-left: 25px;
   color: $lightColor;
   &:before {
     font-family: FontAwesome;
@@ -205,6 +215,10 @@ md-content {
   }
 }
 
+.mm-slideout {
+  height: 100%;
+}
+
 // Source: public/scripts/dashboard/dashboard.scss
 .mainContainer {
   margin-top: 15px;
@@ -261,4 +275,14 @@ md-content {
   .navigationToolbar {
     padding-left: 25px;
   }
+}
+
+// Source: public/scripts/users/users.scss
+.usersContainer {
+  height: 100%;
+  margin-left: 25px;
+  margin-right: 25px;
+  @include shadowLevel-2;
+  display: flex;
+  flex-direction: column;
 }
