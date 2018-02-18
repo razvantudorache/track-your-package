@@ -2,7 +2,17 @@ ag-grid {
   height: 100%;
   flex: 1;
   .agGrid {
-    height: 100%
+    height: 100%;
+    .ag-header {
+      margin-top: 1px;
+      @include box-shadowLevel1;
+    }
+    .ag-body {
+      margin-top: 2px;
+    }
+  }
+  .ag-theme-material {
+    font-family: Segoe UI, Verdana, Arial, Helvetica, sans-serif;
   }
 }
 

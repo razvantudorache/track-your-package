@@ -12,7 +12,8 @@
     });
 
   agGridController.$inject = ['$scope', '$http'];
-  function agGridController ($scope, $http) {
+
+  function agGridController($scope, $http) {
     var me = this;
 
     me.$onInit = function () {
@@ -66,7 +67,6 @@
      * @param params
      */
     function requestGridData(params) {
-      debugger;
       $http.get(me.gridProperties.url, {
         params: {
           start: params.startRow,
