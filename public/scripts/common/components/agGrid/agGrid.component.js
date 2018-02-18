@@ -3,7 +3,7 @@
 (function () {
   angular.module('trackYourPackage')
     .component('agGrid', {
-      templateUrl: 'scripts/components/agGrid/agGrid.template.html',
+      templateUrl: 'scripts/common/components/agGrid/agGrid.template.html',
       controller: agGridController,
       bindings: {
         gridColumns: "<",

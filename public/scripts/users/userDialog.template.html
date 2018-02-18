@@ -1,0 +1,66 @@
+<div class="dialogTitle">{{::userDialog.title}}</div>
+<md-content class="dialogContent userDialog">
+  <form name="userForm">
+    <md-content layout="row" layout-xs="column">
+
+      <md-input-container flex>
+        <label>First name</label>
+        <input name="firstName" required md-no-asterisk ng-model="user.firstName">
+        <div ng-messages="userForm.firstName.$error">
+          <div ng-message="required">This is required.</div>
+        </div>
+      </md-input-container>
+
+      <md-input-container flex>
+        <label>Last name</label>
+        <input name="lastName" required md-no-asterisk ng-model="user.lastName">
+        <div ng-messages="userForm.lastName.$error">
+          <div ng-message="required">This is required.</div>
+        </div>
+      </md-input-container>
+
+    </md-content>
+
+    <md-content layout="row" layout-xs="column">
+
+      <md-input-container flex>
+        <label>Username</label>
+        <input name="username" required md-no-asterisk ng-model="user.username">
+        <div ng-messages="userForm.username.$error">
+          <div ng-message="required">This is required.</div>
+        </div>
+      </md-input-container>
+
+      <md-input-container flex>
+        <label>Password</label>
+        <input name="password" type="password" required md-no-asterisk ng-model="user.password">
+        <div ng-messages="userForm.password.$error">
+          <div ng-message="required">This is required.</div>
+        </div>
+      </md-input-container>
+
+      <md-input-container flex>
+        <label>Confirm password</label>
+        <input name="confirmPassword" type="password" required md-no-asterisk ng-model="user.confirmPassword"
+               ng-pattern="{{user.password}}">
+        <div ng-messages="userForm.confirmPassword.$error" multiple>
+          <div ng-message="required">This is required.</div>
+          <div ng-message-exp="['pattern']">
+            The confirmed password is not the same with password.
+          </div>
+        </div>
+      </md-input-container>
+
+    </md-content>
+
+    <md-select placeholder="Assign user role" ng-model="user.role">
+      <md-option ng-repeat="role in roles">{{role}}</md-option>
+    </md-select>
+    <div class="dialogToolbar" layout="row">
+      <md-button ng-click="closeDialog()">Cancel</md-button>
+      <md-button ng-click="add()"
+                 ng-disabled="!userForm.$valid || buttonAddDisabled">{{::userDialog.buttonLabel}}
+      </md-button>
+    </div>
+  </form>
+</md-content>

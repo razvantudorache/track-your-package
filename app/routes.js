@@ -79,13 +79,18 @@ module.exports = function (app) {
   // update the user details from the profile page
   app.post('/updateUserDetails', requireLogin, function (request, response) {
     var userDetails = request.body;
-
-    User.findOneAndUpdate({username: request.session.user.username}, {
+    var updateObject = {
       firstName: userDetails.firstName,
       lastName: userDetails.lastName,
       email: userDetails.email,
       phone: userDetails.phone
-    }, {new: true}, function (error, user) {
+    };
+
+    if (request.session.user !== 'courier') {
+      updateObject.address = userDetails.address;
+    }
+
+    User.findOneAndUpdate({username: request.session.user.username}, updateObject, {new: true}, function (error, user) {
       if (error) throw error;
 
       response.json(user.toJSON());

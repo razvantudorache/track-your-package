@@ -21,7 +21,7 @@
 
       </md-content>
 
-      <md-input-container ng-if="userDetails.role==='admin'" class="formItem">
+      <md-input-container ng-if="userDetails.role !== 'courier'" class="formItem">
         <label>Company address</label>
         <input name="address" required md-no-asterisk ng-model="userDetails.address">
         <div ng-messages="profileForm.address.$error">
