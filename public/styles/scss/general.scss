@@ -46,16 +46,22 @@ md-input-container {
 
 md-dialog {
   .dialogTitle {
-    height: 35px;
+    border-bottom: 1px solid $borderColor;
+    height: auto;
     font-size: 20px;
     color: $materialColorGrey800;
-    margin-top: 20px;
-    margin-left: 25px;
+    margin: 20px 25px 5px 25px;
   }
   .dialogContent {
-    margin: 25px;
+    padding: 25px 25px 0 25px;
+    flex: 1;
   }
   .dialogToolbar {
+    border-top: 1px solid $borderColor;
+    margin: 5px 25px 0 25px;
+    height: 45px;
+    overflow: hidden;
+    align-items: center;
     display: flex;
     justify-content: flex-end;
   }
@@ -66,6 +72,7 @@ md-content {
 }
 
 md-toolbar {
+  z-index: 1;
   min-height: 50px;
   margin-bottom: 2px;
   @include shadowLevel-1;

@@ -7,7 +7,8 @@
       controller: agGridController,
       bindings: {
         gridColumns: "<",
-        gridProperties: "<"
+        gridProperties: "<",
+        grid: '='
       }
     });
 
@@ -44,6 +45,7 @@
 
     /**
      * Handler when the grid is ready
+     * @return {void}
      */
     function onGridReadyHandler() {
       var dataSource = {
@@ -53,10 +55,16 @@
 
       $scope.gridOptions.api.setDatasource(dataSource);
       $scope.gridOptions.api.sizeColumnsToFit();
+
+      if (!_.isUndefined(me.grid)) {
+        me.grid = $scope.gridOptions;
+      }
+
     }
 
     /**
      * Handler when grid resize
+     * @return {void}
      */
     function onGridSizeChangedHandler() {
       $scope.gridOptions.api.sizeColumnsToFit();
@@ -64,7 +72,8 @@
 
     /**
      * Get data from the server
-     * @param params
+     * @param {Object} params - grid options
+     * @return {void}
      */
     function requestGridData(params) {
       $http.get(me.gridProperties.url, {

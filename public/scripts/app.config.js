@@ -34,7 +34,7 @@
                 userRole = response.data.role;
                 return {
                   menu: response.data.menuEntries,
-                  details: response.data.userDetails,
+                  details: response.data.userDetails
                 };
               },
               function errorCallback() {
@@ -60,7 +60,7 @@
           if (userRole === 'courier') {
             return $state.target('dashboard');
           } else {
-            return true
+            return true;
           }
         }]
       })
@@ -73,7 +73,7 @@
           if (userRole === 'courier') {
             return $state.target('dashboard');
           } else {
-            return true
+            return true;
           }
         }]
       })

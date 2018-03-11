@@ -21,7 +21,8 @@
     margin-top: 5px;
     background-color: $lightColor;
     &:before {
-      font-family: FontAwesome;
+      font-family: 'Font Awesome 5 Free';
+      font-weight: 900;
       content: '\f2bd';
       font-size: 46px;
       color: $materialColorGrey500;

@@ -20,7 +20,7 @@
     "angular-loading-bar": "^0.9.0",
     "angular-material": "^1.1.1",
     "lodash": "^4.17.5",
-    "font-awesome": "Font-Awesome#^4.7.0",
+    "font-awesome": "Font-Awesome#5.0.8",
     "jQuery.mmenu": "mmenu#7.0.0",
     "noty": "3.1.4",
     "ag-grid": "16.0.1"
@@ -35,7 +35,7 @@
     },
     "font-awesome": {
       "main": [
-        "css/font-awesome.css"
+        "web-fonts-with-css/css/fontawesome-all.css"
       ]
     },
     "noty": {

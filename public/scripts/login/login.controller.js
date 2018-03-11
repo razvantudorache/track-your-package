@@ -33,7 +33,7 @@
           if (response.data.success) {
             $state.go('dashboard');
           } else {
-            notificationMessage.showNotificationMessage(response.data.message, 'warning');
+            notificationMessage.showNotificationMessage(response.data.message, response.data.messageType);
           }
         });
       }

@@ -47,16 +47,22 @@ md-input-container {
 
 md-dialog {
   .dialogTitle {
-    height: 35px;
+    border-bottom: 1px solid $borderColor;
+    height: auto;
     font-size: 20px;
     color: $materialColorGrey800;
-    margin-top: 20px;
-    margin-left: 25px;
+    margin: 20px 25px 5px 25px;
   }
   .dialogContent {
-    margin: 25px;
+    padding: 25px 25px 0 25px;
+    flex: 1;
   }
   .dialogToolbar {
+    border-top: 1px solid $borderColor;
+    margin: 5px 25px 0 25px;
+    height: 45px;
+    overflow: hidden;
+    align-items: center;
     display: flex;
     justify-content: flex-end;
   }
@@ -67,6 +73,7 @@ md-content {
 }
 
 md-toolbar {
+  z-index: 1;
   min-height: 50px;
   margin-bottom: 2px;
   @include shadowLevel-1;
@@ -80,7 +87,7 @@ md-toolbar {
   min-height: 30px;
 }
 
-// Source: public/scripts/components/agGrid/agGrid.scss
+// Source: public/scripts/common/components/agGrid/agGrid.scss
 ag-grid {
   height: 100%;
   flex: 1;
@@ -92,6 +99,32 @@ ag-grid {
     }
     .ag-body {
       margin-top: 2px;
+      .actionColumn {
+        .actionList {
+          margin: 0;
+          padding: 0;
+          list-style: none;
+          .action {
+            cursor: pointer;
+            display: inline-block;
+            &:before {
+              font-family: 'Font Awesome 5 Free';
+              font-size: 20px;
+            }
+            &.editRow {
+              &:before {
+                content: '\f044';
+                margin-right: 15px;
+              }
+            }
+            &.deleteRow {
+              &:before {
+                content: '\f2ed';
+              }
+            }
+          }
+        }
+      }
     }
   }
   .ag-theme-material {
@@ -100,14 +133,7 @@ ag-grid {
 }
 
 
-// Source: public/scripts/components/services/notificationMessage/notificationMessage.scss
-.noty_body {
-  min-height: 50px;
-  display: flex;
-  align-items: center;
-}
-
-// Source: public/scripts/components/topBar/topBar.scss
+// Source: public/scripts/common/components/topBar/topBar.scss
 .topBarContainer {
   height: 55px;
   background-color: $materialColorBlue800;
@@ -131,7 +157,8 @@ ag-grid {
     margin-top: 5px;
     background-color: $lightColor;
     &:before {
-      font-family: FontAwesome;
+      font-family: 'Font Awesome 5 Free';
+      font-weight: 900;
       content: '\f2bd';
       font-size: 46px;
       color: $materialColorGrey500;
@@ -153,7 +180,7 @@ ag-grid {
 }
 
 
-// Source: public/scripts/components/topMenu/topMenu.scss
+// Source: public/scripts/common/components/topMenu/topMenu.scss
 .topMenuIcon {
   display: inline-flex;
   align-items: center;
@@ -164,9 +191,10 @@ ag-grid {
   margin-left: 25px;
   color: $lightColor;
   &:before {
-    font-family: FontAwesome;
+    font-family: 'Font Awesome 5 Free';
     content: '\f0c9';
     font-size: 25px;
+    font-weight: 900;
   }
   &:hover {
     color: $materialColorGrey300;
@@ -192,7 +220,7 @@ ag-grid {
         display: flex;
         align-items: center;
         &:before {
-          font-family: FontAwesome;
+          font-family: 'Font Awesome 5 Free';
           font-size: 25px;
           margin-right: 10px;
           height: 25px;
@@ -205,6 +233,7 @@ ag-grid {
         &.dashboard{
           &:before {
             content: '\f26c';
+            font-weight: 900;
           }
         }
         &.profile {
@@ -215,10 +244,12 @@ ag-grid {
         &.users {
           &:before {
             content: '\f0c0';
+            font-weight: 900;
           }
         }
         &.packages {
           &:before {
+            font-family: 'Font Awesome 5 Brands';
             content: '\f16b';
           }
         }
@@ -229,7 +260,9 @@ ag-grid {
         }
         &.logout {
           &:before {
-            content: '\f08b';
+            font-family: 'Font Awesome 5 Free';
+            content: '\f2f5';
+            font-weight: 900;
           }
         }
       }
@@ -241,6 +274,13 @@ ag-grid {
 
 .mm-slideout {
   height: 100%;
+}
+
+// Source: public/scripts/common/services/notificationMessage/notificationMessage.scss
+.noty_body {
+  min-height: 50px;
+  display: flex;
+  align-items: center;
 }
 
 // Source: public/scripts/dashboard/dashboard.scss

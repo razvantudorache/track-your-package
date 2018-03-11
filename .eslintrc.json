@@ -16,7 +16,8 @@
     "translations": 1,
     "formats": 1,
     "moment": 1,
-    "Noty": 1
+    "Noty": 1,
+    "agGrid": 1
   },
   "rules": {
     "eqeqeq": 2,

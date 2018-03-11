@@ -9,6 +9,32 @@ ag-grid {
     }
     .ag-body {
       margin-top: 2px;
+      .actionColumn {
+        .actionList {
+          margin: 0;
+          padding: 0;
+          list-style: none;
+          .action {
+            cursor: pointer;
+            display: inline-block;
+            &:before {
+              font-family: 'Font Awesome 5 Free';
+              font-size: 20px;
+            }
+            &.editRow {
+              &:before {
+                content: '\f044';
+                margin-right: 15px;
+              }
+            }
+            &.deleteRow {
+              &:before {
+                content: '\f2ed';
+              }
+            }
+          }
+        }
+      }
     }
   }
   .ag-theme-material {

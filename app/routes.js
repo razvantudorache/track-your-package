@@ -36,6 +36,7 @@ module.exports = function (app) {
             } else {
               response.json({
                 message: 'Username or password incorrect!',
+                messageType: 'warning',
                 success: false
               });
             }
@@ -43,6 +44,7 @@ module.exports = function (app) {
         } else {
           response.json({
             message: 'Username or password incorrect!',
+            messageType: 'warning',
             success: false
           });
         }
@@ -115,7 +117,8 @@ module.exports = function (app) {
                 User.findOneAndUpdate({username: request.session.user.username}, {password: hash}, function (error, res) {
                     response.json({
                       success: true,
-                      message: 'Password changed successfully!'
+                      message: 'Password changed successfully!',
+                      messageType: 'success'
                     });
                 });
               });
@@ -123,14 +126,16 @@ module.exports = function (app) {
           } else {
             response.json({
               success: false,
-              message: 'Username or old password not match!'
+              message: 'Username or old password not match!',
+              messageType: 'warning'
             });
           }
         });
       } else {
         response.json({
           success: false,
-          message: 'Username or old password not match!'
+          message: 'Username or old password not match!',
+          messageType: 'warning'
         });
       }
     });
@@ -165,6 +170,52 @@ module.exports = function (app) {
     } else {
       response.sendStatus(401);
     }
+  });
+
+  //  insert new user in list
+  app.post('/insertUser', requireLogin, function (request, response) {
+    var userData = request.body.user;
+
+    if (request.session.user.role === 'admin') {
+      //avoid adding a different company when admin inserts users
+      userData.companyID = request.session.user.companyID;
+      userData.address = request.session.user.address;
+    }
+
+    var isUserDataValid = true;
+    for (var key in userData) {
+      if (userData.hasOwnProperty(key)) {
+        if (!userData[key]) {
+          isUserDataValid = false;
+          break;
+        }
+      }
+    }
+
+    if (isUserDataValid) {
+      User.create(userData, function (error, user) {
+        if (error) {
+          response.json({
+            message: 'Username must be unique!',
+            messageType: 'warning',
+            success: true
+          });
+        } else {
+          response.json({
+            message: 'User successfully added!',
+            messageType: 'success',
+            success: true
+          });
+        }
+      });
+    } else {
+      response.json({
+        message: 'Some of the fields are required!',
+        messageType: 'warning',
+        success: false
+      });
+    }
+
   });
 
   // application

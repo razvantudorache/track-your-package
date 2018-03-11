@@ -24,10 +24,10 @@
           $scope.buttonChangeDisabled = false;
 
           if (response.data.success) {
-            notificationMessage.showNotificationMessage(response.data.message, 'success');
+            notificationMessage.showNotificationMessage(response.data.message, response.data.messageType);
             $mdDialog.cancel();
           } else {
-            notificationMessage.showNotificationMessage(response.data.message, 'warning');
+            notificationMessage.showNotificationMessage(response.data.message, response.data.messageType);
           }
         });
     };
