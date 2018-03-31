@@ -4,9 +4,9 @@
   angular.module('trackYourPackage')
     .controller('usersController', usersController);
 
-  usersController.$inject = ['$scope', '$mdDialog', 'trackYourPackageService'];
+  usersController.$inject = ['$scope', '$mdDialog', 'trackYourPackageService', '$http', 'notificationMessage'];
 
-  function usersController($scope, $mdDialog, trackYourPackageService) {
+  function usersController($scope, $mdDialog, trackYourPackageService, $http, notificationMessage) {
     var me = this;
 
     me.$onInit = function () {
@@ -68,7 +68,12 @@
         url: '/userList'
       };
 
-      me.grid = {};
+      me.grid = null;
+
+      me.rowActions = {
+        deleteRow: deleteRow,
+        editRow: editRow
+      }
     }
 
     function actionColumnRenderer(params) {
@@ -80,12 +85,12 @@
 
         //the current user should not be deleted from the user list
         if (params.data._id !== currentUser._id) {
-          deleteButton = '<li class="action deleteRow"></li>'
+          deleteButton = '<li class="action deleteRow" data-row-id="' + params.node.id + '"></li>';
         }
 
         columnTemplate = '<ul class="actionList">' +
+          '                   <li class="action editRow" data-row-id="' + params.node.id + '"></li>' +
                               deleteButton +
-          '                   <li class="action editRow"></li>' +
           '               </ul>';
       }
 
@@ -104,6 +109,40 @@
           grid: me.grid
         }
       });
+    }
+
+    function deleteRow() {
+      var $button = $(this);
+      var rowId = $button.data('rowId');
+
+      var data = me.grid.api.getDisplayedRowAtIndex(rowId).data;
+
+      if (!$button.is('[disabled]')) {
+        $button.attr("disabled", true);
+
+        $http.delete('/deleteUser/' + data._id).then(function (response) {
+          $button.attr("disabled", false);
+
+          notificationMessage.showNotificationMessage(response.data.message, response.data.messageType);
+
+          if (response.data.success) {
+            me.grid.api.purgeInfiniteCache();
+          }
+        });
+      }
+    }
+
+    function editRow() {
+      var $button = $(this);
+      var rowId = $button.data('rowId');
+
+      var data = me.grid.api.getDisplayedRowAtIndex(rowId).data;
+
+      if ($button.is('[disabled]')) {
+        $button.attr("disabled", true);
+      }
+
+      console.log('edit');
     }
   }
 })();

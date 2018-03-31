@@ -36,7 +36,7 @@ module.exports = function (app) {
             } else {
               response.json({
                 message: 'Username or password incorrect!',
-                messageType: 'warning',
+                messageType: 'error',
                 success: false
               });
             }
@@ -44,7 +44,7 @@ module.exports = function (app) {
         } else {
           response.json({
             message: 'Username or password incorrect!',
-            messageType: 'warning',
+            messageType: 'error',
             success: false
           });
         }
@@ -127,7 +127,7 @@ module.exports = function (app) {
             response.json({
               success: false,
               message: 'Username or old password not match!',
-              messageType: 'warning'
+              messageType: 'error'
             });
           }
         });
@@ -135,7 +135,7 @@ module.exports = function (app) {
         response.json({
           success: false,
           message: 'Username or old password not match!',
-          messageType: 'warning'
+          messageType: 'error'
         });
       }
     });
@@ -197,7 +197,7 @@ module.exports = function (app) {
         if (error) {
           response.json({
             message: 'Username must be unique!',
-            messageType: 'warning',
+            messageType: 'error',
             success: true
           });
         } else {
@@ -211,11 +211,32 @@ module.exports = function (app) {
     } else {
       response.json({
         message: 'Some of the fields are required!',
-        messageType: 'warning',
+        messageType: 'error',
         success: false
       });
     }
 
+  });
+
+  // delete user from the list
+  app.delete('/deleteUser/:userId', requireLogin, function (request, response) {
+    var userId = request.params.userId;
+
+    User.findByIdAndRemove(userId, function (error, user) {
+      if (error) {
+        response.json({
+          message: 'Something wrong!',
+          messageType: 'error',
+          success: false
+        });
+      } else {
+        response.json({
+          message: 'User successfully deleted!',
+          messageType: 'success',
+          success: true
+        });
+      }
+    });
   });
 
   // application

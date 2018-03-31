@@ -7,6 +7,7 @@
   userDialogController.$inject = ['$scope', '$mdDialog', '$http', 'trackYourPackageService', 'notificationMessage'];
 
   function userDialogController($scope, $mdDialog, $http, trackYourPackageService, notificationMessage) {
+    var me = this;
 
     $scope.buttonAddDisabled = false;
     $scope.user = {};
@@ -38,7 +39,9 @@
 
           if (response.data.success) {
             $scope.user = {};
-            //refresh the grid
+
+            me.grid.api.purgeInfiniteCache();
+
             $mdDialog.cancel();
           }
         });

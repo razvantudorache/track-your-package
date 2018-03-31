@@ -8,7 +8,8 @@
       bindings: {
         gridColumns: "<",
         gridProperties: "<",
-        grid: '='
+        grid: '=',
+        rowActions: '<'
       }
     });
 
@@ -60,6 +61,7 @@
         me.grid = $scope.gridOptions;
       }
 
+      addRowActionsHandlers();
     }
 
     /**
@@ -87,6 +89,14 @@
 
         params.successCallback(results, total);
       });
+    }
+
+    function addRowActionsHandlers() {
+      for (var key in me.rowActions) {
+        if (me.rowActions.hasOwnProperty(key)) {
+          $(me.grid.api.gridCore.eGridDiv).on('click', '.action.' + key, me.rowActions[key]);
+        }
+      }
     }
   }
 }());

@@ -12,8 +12,7 @@
       Noty.overrideDefaults({
         theme: 'nest',
         killer: true,
-        closeWith: ['button'],
-        timeout: 3000
+        closeWith: ['button']
       });
     };
 
@@ -23,7 +22,8 @@
 
       new Noty({
         text: message,
-        type: type
+        type: type,
+        timeout: type === 'error' ? 0 : 3000
       }).show();
     };
   }
