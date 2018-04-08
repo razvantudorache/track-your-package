@@ -7,7 +7,7 @@
           <label>First name</label>
           <input name="firstName" required md-no-asterisk ng-model="userDetails.firstName">
           <div ng-messages="profileForm.firstName.$error">
-            <div ng-messages-include="scripts/common/templates/genericMessages.html"></div>
+            <p ng-messages-include="scripts/common/templates/genericMessages.html"></p>
           </div>
         </md-input-container>
 
@@ -15,7 +15,7 @@
           <label>Last name</label>
           <input name="lastName" required md-no-asterisk ng-model="userDetails.lastName">
           <div ng-messages="profileForm.lastName.$error">
-            <div ng-messages-include="scripts/common/templates/genericMessages.html"></div>
+            <p ng-messages-include="scripts/common/templates/genericMessages.html"></p>
           </div>
         </md-input-container>
 
@@ -25,7 +25,7 @@
         <label>Company address</label>
         <input name="address" required md-no-asterisk ng-model="userDetails.address">
         <div ng-messages="profileForm.address.$error">
-          <div ng-messages-include="scripts/common/templates/genericMessages.html"></div>
+          <p ng-messages-include="scripts/common/templates/genericMessages.html"></p>
         </div>
       </md-input-container>
 
@@ -34,9 +34,7 @@
           <label>Email</label>
           <input name="email" ng-pattern="/^.+@.+\..+$/" required md-no-asterisk ng-model="userDetails.email">
           <div ng-messages="profileForm.email.$error">
-            <div ng-message-exp="['pattern']">
-              Your email must look like an e-mail address.
-            </div>
+            <p ng-message-exp="['pattern']">Your email must look like an e-mail address.</p>
             <div ng-messages-include="scripts/common/templates/genericMessages.html"></div>
           </div>
         </md-input-container>
@@ -45,7 +43,7 @@
           <label>Phone</label>
           <input name="phone" type="number" required md-no-asterisk ng-model="userDetails.phone">
           <div ng-messages="profileForm.phone.$error">
-            <div ng-messages-include="scripts/common/templates/genericMessages.html"></div>
+            <p ng-messages-include="scripts/common/templates/genericMessages.html"></p>
           </div>
         </md-input-container>
       </md-content>

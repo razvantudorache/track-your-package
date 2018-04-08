@@ -84,9 +84,9 @@
       <md-content layout="row" layout-xs="column">
         <md-input-container flex>
           <label>Email</label>
-          <input type="email" name="email" required md-no-asterisk ng-model="user.email">
+          <input ng-pattern="/^.+@.+\..+$/" name="email" required md-no-asterisk ng-model="user.email">
           <div ng-messages="userForm.email.$error" ng-if="userForm.$submitted">
-            <p ng-message="email">Your email must look like an e-mail address.</p>
+            <p ng-message-exp="['pattern']">Your email must look like an e-mail address.</p>
             <p ng-messages-include="scripts/common/templates/genericMessages.html"></p>
           </div>
         </md-input-container>

@@ -14,22 +14,25 @@
      * @return {void}
      */
     $scope.changePassword = function () {
-      $scope.buttonChangeDisabled = true;
 
-      $http.post('/updatePassword', {
-        oldPassword: $scope.oldPassword,
-        newPassword: $scope.newPassword
-      }).then(
-        function (response) {
-          $scope.buttonChangeDisabled = false;
+      if ($scope.changePasswordForm.$valid) {
+        $scope.buttonChangeDisabled = true;
 
-          if (response.data.success) {
-            notificationMessage.showNotificationMessage(response.data.message, response.data.messageType);
-            $mdDialog.cancel();
-          } else {
-            notificationMessage.showNotificationMessage(response.data.message, response.data.messageType);
-          }
-        });
+        $http.post('/updatePassword', {
+          oldPassword: $scope.oldPassword,
+          newPassword: $scope.newPassword
+        }).then(
+          function (response) {
+            $scope.buttonChangeDisabled = false;
+
+            if (response.data.success) {
+              notificationMessage.showNotificationMessage(response.data.message, response.data.messageType);
+              $mdDialog.cancel();
+            } else {
+              notificationMessage.showNotificationMessage(response.data.message, response.data.messageType);
+            }
+          });
+      }
     };
 
     /**
