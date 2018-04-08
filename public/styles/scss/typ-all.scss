@@ -344,6 +344,14 @@ ag-grid {
   }
 }
 
+// Source: public/scripts/users/userDialog.scss
+.userDialog {
+  width: 30vw;
+  .formItem {
+    display: block;
+  }
+}
+
 // Source: public/scripts/users/users.scss
 .usersContainer {
   flex: 1;

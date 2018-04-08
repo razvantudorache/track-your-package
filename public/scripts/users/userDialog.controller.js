@@ -28,23 +28,25 @@
      * @return {void}
      */
     $scope.add = function () {
-      $scope.buttonAddDisabled = true;
+      if ($scope.userForm.$valid) {
+        $scope.buttonAddDisabled = true;
 
-      $http.post('/insertUser', {
-        user: $scope.user
-      }).then(
-        function (response) {
-          $scope.buttonAddDisabled = false;
-          notificationMessage.showNotificationMessage(response.data.message, response.data.messageType);
+        $http.post('/insertUser', {
+          user: $scope.user
+        }).then(
+          function (response) {
+            $scope.buttonAddDisabled = false;
+            notificationMessage.showNotificationMessage(response.data.message, response.data.messageType);
 
-          if (response.data.success) {
-            $scope.user = {};
+            if (response.data.success) {
+              $scope.user = {};
 
-            me.grid.api.purgeInfiniteCache();
+              me.grid.api.purgeInfiniteCache();
 
-            $mdDialog.cancel();
-          }
-        });
+              $mdDialog.cancel();
+            }
+          });
+      }
     };
 
     /**

@@ -1,108 +1,110 @@
-<div class="dialogTitle">{{::userDialog.title}}</div>
-<md-content class="dialogContent userDialog">
-  <form name="userForm">
-    <md-content layout="row" layout-xs="column">
+<md-dialog class="userDialog">
+  <div class="dialogTitle">{{::userDialog.title}}</div>
+  <md-dialog-content class="dialogContent">
+    <form id="userForm" novalidate name="userForm" ng-submit="add()">
+      <md-content layout="row" layout-xs="column">
+        <md-input-container flex>
+          <label>First name</label>
+          <input name="firstName" required md-no-asterisk ng-model="user.firstName">
+          <div ng-messages="userForm.firstName.$error" ng-if="userForm.$submitted">
+            <p ng-messages-include="scripts/common/templates/genericMessages.html"></p>
+          </div>
+        </md-input-container>
 
-      <md-input-container flex>
-        <label>First name</label>
-        <input name="firstName" required md-no-asterisk ng-model="user.firstName">
-        <div ng-messages="userForm.firstName.$error">
-          <div ng-message="required">This is required.</div>
-        </div>
-      </md-input-container>
+        <md-input-container flex>
+          <label>Last name</label>
+          <input name="lastName" required md-no-asterisk ng-model="user.lastName">
+          <div ng-messages="userForm.lastName.$error" ng-if="userForm.$submitted">
+            <p ng-messages-include="scripts/common/templates/genericMessages.html"></p>
+          </div>
+        </md-input-container>
+      </md-content>
 
-      <md-input-container flex>
-        <label>Last name</label>
-        <input name="lastName" required md-no-asterisk ng-model="user.lastName">
-        <div ng-messages="userForm.lastName.$error">
-          <div ng-message="required">This is required.</div>
-        </div>
-      </md-input-container>
-
-    </md-content>
-
-    <md-content layout="row" layout-xs="column">
-
-      <md-input-container flex>
+      <md-input-container class="formItem">
         <label>Username</label>
         <input name="username" required md-no-asterisk ng-model="user.username">
-        <div ng-messages="userForm.username.$error">
-          <div ng-message="required">This is required.</div>
+        <div ng-messages="userForm.username.$error" ng-if="userForm.$submitted">
+          <p ng-messages-include="scripts/common/templates/genericMessages.html"></p>
         </div>
       </md-input-container>
 
-      <md-input-container flex>
-        <label>Password</label>
-        <input name="password" type="password" required md-no-asterisk ng-model="user.password" minlength="6"
-               md-maxlength="15">
-        <div ng-messages="userForm.password.$error">
-          <div ng-message="required">This is required.</div>
-          <div ng-message="minlength">Password must have at leas 6 characters.</div>
-          <div ng-message="md-maxlength">Password must have maximum 15 characters.</div>
-        </div>
-      </md-input-container>
-
-      <md-input-container flex>
-        <label>Confirm password</label>
-        <input name="confirmPassword" type="password" required md-no-asterisk ng-model="user.confirmPassword"
-               ng-pattern="{{user.password}}">
-        <div ng-messages="userForm.confirmPassword.$error" multiple>
-          <div ng-message="required">This is required.</div>
-          <div ng-message-exp="['pattern']">
-            The confirmed password is not the same with password.
+      <md-content layout="row" layout-xs="column">
+        <md-input-container flex>
+          <label>Password</label>
+          <input name="password" type="password" required md-no-asterisk ng-model="user.password" minlength="6"
+                 maxlength="15">
+          <div ng-messages="userForm.password.$error" ng-if="userForm.$submitted">
+            <p ng-messages-include="scripts/common/templates/genericMessages.html"></p>
+            <p ng-message="minlength">Password must have at least 6 characters.</p>
+            <p ng-message="md-maxlength">Password must have maximum 15 characters.</p>
           </div>
-        </div>
-      </md-input-container>
+        </md-input-container>
 
-    </md-content>
-
-    <md-content layout="row" layout-xs="column" ng-if="currentUser.role === 'superadmin'">
-      <md-input-container flex>
-        <label>Company ID</label>
-        <input name="companyID" type="number" required md-no-asterisk ng-model="user.companyID">
-        <div ng-messages="userForm.companyID.$error">
-          <div ng-message="required">This is required.</div>
-        </div>
-      </md-input-container>
-
-      <md-input-container flex>
-        <label>Company Address</label>
-        <input name="companyAddress" required md-no-asterisk ng-model="user.address">
-        <div ng-messages="userForm.companyAddress.$error">
-          <div ng-message="required">This is required.</div>
-        </div>
-      </md-input-container>
-    </md-content>
-
-    <md-select placeholder="Assign user role" ng-model="user.role">
-      <md-option ng-value="role" ng-repeat="role in roles">{{role}}</md-option>
-    </md-select>
-
-    <md-content layout="row" layout-xs="column">
-      <md-input-container flex>
-        <label>Email</label>
-        <input name="email" ng-pattern="/^.+@.+\..+$/" required md-no-asterisk ng-model="user.email">
-        <div ng-messages="userForm.email.$error">
-          <div ng-message-exp="['pattern']">
-            Your email must look like an e-mail address.
+        <md-input-container flex>
+          <label>Confirm password</label>
+          <input name="confirmPassword" type="password" required md-no-asterisk ng-model="user.confirmPassword"
+                 ng-pattern="{{user.password}}">
+          <div ng-messages="userForm.confirmPassword.$error" ng-if="userForm.$submitted">
+            <p ng-messages-include="scripts/common/templates/genericMessages.html"></p>
+            <p ng-message-exp="['pattern']">
+              The confirmed password is not the same with password.
+            </p>
           </div>
-          <div ng-message="required">This is required.</div>
+        </md-input-container>
+      </md-content>
+
+      <md-content layout="row" layout-xs="column" ng-if="currentUser.role === 'superadmin'">
+        <md-input-container flex>
+          <label>Company ID</label>
+          <input name="companyID" type="number" required md-no-asterisk ng-model="user.companyID">
+          <div ng-messages="userForm.companyID.$error" ng-if="userForm.$submitted">
+            <p ng-messages-include="scripts/common/templates/genericMessages.html"></p>
+          </div>
+        </md-input-container>
+
+        <md-input-container flex>
+          <label>Company Address</label>
+          <input name="companyAddress" required md-no-asterisk ng-model="user.address">
+          <div ng-messages="userForm.companyAddress.$error" ng-if="userForm.$submitted">
+            <p ng-messages-include="scripts/common/templates/genericMessages.html"></p>
+          </div>
+        </md-input-container>
+      </md-content>
+
+      <md-input-container class="formItem">
+        <md-select name="role" required placeholder="Assign user role" ng-model="user.role" md-no-asterisk>
+          <md-option ng-value="role" ng-repeat="role in roles">{{role}}</md-option>
+        </md-select>
+        <div ng-messages="userForm.role.$error" ng-if="userForm.$submitted">
+          <p ng-messages-include="scripts/common/templates/genericMessages.html"></p>
         </div>
       </md-input-container>
 
-      <md-input-container flex>
-        <label>Phone</label>
-        <input name="phone" type="number" required md-no-asterisk ng-model="user.phone">
-        <div ng-messages="userForm.phone.$error">
-          <div ng-message="required">This is required.</div>
-        </div>
-      </md-input-container>
-    </md-content>
-  </form>
-</md-content>
-<div class="dialogToolbar" layout="row">
-  <md-button ng-click="closeDialog()">Cancel</md-button>
-  <md-button ng-click="add()"
-             ng-disabled="!userForm.$valid || buttonAddDisabled">{{::userDialog.buttonLabel}}
-  </md-button>
-</div>
+
+      <md-content layout="row" layout-xs="column">
+        <md-input-container flex>
+          <label>Email</label>
+          <input type="email" name="email" required md-no-asterisk ng-model="user.email">
+          <div ng-messages="userForm.email.$error" ng-if="userForm.$submitted">
+            <p ng-message="email">Your email must look like an e-mail address.</p>
+            <p ng-messages-include="scripts/common/templates/genericMessages.html"></p>
+          </div>
+        </md-input-container>
+
+        <md-input-container flex>
+          <label>Phone</label>
+          <input name="phone" type="number" required md-no-asterisk ng-model="user.phone">
+          <div ng-messages="userForm.phone.$error" ng-if="userForm.$submitted">
+            <p ng-messages-include="scripts/common/templates/genericMessages.html"></p>
+          </div>
+        </md-input-container>
+      </md-content>
+    </form>
+  </md-dialog-content>
+  <md-dialog-actions class="dialogToolbar" layout="row">
+    <md-button ng-click="closeDialog()">Cancel</md-button>
+    <md-button type="submit" form="userForm"
+               ng-disabled="buttonAddDisabled">{{::userDialog.buttonLabel}}
+    </md-button>
+  </md-dialog-actions>
+</md-dialog>
