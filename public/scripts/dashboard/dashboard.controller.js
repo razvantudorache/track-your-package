@@ -14,7 +14,6 @@
 
       $scope.pageTitle = _.capitalize($state.current.name);
 
-
       $transitions.onSuccess({}, function(trans){
         var currentState = trans.router.stateService.current;
 

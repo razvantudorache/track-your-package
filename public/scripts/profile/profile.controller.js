@@ -23,7 +23,9 @@
     function save() {
       $scope.buttonSaveDisabled = true;
 
-      $http.post('/updateUserDetails', $scope.userDetails).then(function (response) {
+      $http.post('/updateUserDetails', {
+        user: $scope.userDetails
+      }).then(function (response) {
         $scope.buttonSaveDisabled = false;
         notificationMessage.showNotificationMessage(response.data.message, response.data.messageType);
 

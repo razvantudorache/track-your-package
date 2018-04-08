@@ -80,22 +80,21 @@ module.exports = function (app) {
 
   // update the user details from the profile page
   app.post('/updateUserDetails', requireLogin, function (request, response) {
-    var userDetails = request.body;
+    var userDetails = request.body.user;
     var updateObject = {
       firstName: userDetails.firstName,
       lastName: userDetails.lastName,
       email: userDetails.email,
-      phone: userDetails.phone
+      phone: userDetails.phone,
+      username: userDetails.username
     };
 
     if (request.session.user !== 'courier') {
       updateObject.address = userDetails.address;
     }
 
-    User.findOneAndUpdate({username: request.session.user.username}, updateObject, {new: true}, function (error, user) {
-      if (error) throw error;
-
-      if (user) {
+    User.findByIdAndUpdate(userDetails._id, updateObject, {new: true}, function (error, user) {
+      if (!error && user) {
         response.json({
           user: user.toJSON(),
           success: true,
@@ -105,7 +104,7 @@ module.exports = function (app) {
       } else {
         response.json({
           success: false,
-          message: 'Changing details failed!',
+          message: 'Changing details failed. Username must be unique!',
           messageType: 'error'
         });
       }

@@ -10,7 +10,7 @@
     var me = this;
 
     $scope.buttonAddDisabled = false;
-    $scope.user = {};
+    $scope.user = me.editMode ? me.user : {};
 
     buildAvailableRoles();
 
@@ -23,30 +23,25 @@
       }
     }
 
-    /**
-     * Save new password
-     * @return {void}
-     */
-    $scope.add = function () {
-      if ($scope.userForm.$valid) {
-        $scope.buttonAddDisabled = true;
+    $scope.addOrEdit = function () {
+      var url = me.editMode ? '/updateUserDetails' : '/insertUser';
 
-        $http.post('/insertUser', {
-          user: $scope.user
-        }).then(
-          function (response) {
-            $scope.buttonAddDisabled = false;
-            notificationMessage.showNotificationMessage(response.data.message, response.data.messageType);
+      $scope.buttonDisabled = true;
 
-            if (response.data.success) {
-              $scope.user = {};
+      $http.post(url, {
+        user: $scope.user
+      }).then(function (response) {
+        $scope.buttonDisabled = false;
+        notificationMessage.showNotificationMessage(response.data.message, response.data.messageType);
 
-              me.grid.api.purgeInfiniteCache();
+        if (response.data.success) {
+          $scope.user = {};
 
-              $mdDialog.cancel();
-            }
-          });
-      }
+          me.grid.api.purgeInfiniteCache();
+
+          $mdDialog.cancel();
+        }
+      });
     };
 
     /**

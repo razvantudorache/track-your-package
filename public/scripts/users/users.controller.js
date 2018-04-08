@@ -106,30 +106,41 @@
         locals: {
           title: 'Add new user',
           buttonLabel: 'Add',
-          grid: me.grid
+          grid: me.grid,
+          editMode: false
         }
       });
     }
 
     function deleteRow() {
       var $button = $(this);
-      var rowId = $button.data('rowId');
 
-      var data = me.grid.api.getDisplayedRowAtIndex(rowId).data;
+      var confirm = $mdDialog.confirm()
+        .title('Would you like to delete the selected user?')
+        .ok('Yes')
+        .cancel('No');
 
-      if (!$button.is('[disabled]')) {
-        $button.attr("disabled", true);
+      $mdDialog.show(confirm).then(function() {
+        if (!$button.is('[disabled]')) {
+          var rowId = $button.data('rowId');
 
-        $http.delete('/deleteUser/' + data._id).then(function (response) {
-          $button.attr("disabled", false);
+          var data = me.grid.api.getDisplayedRowAtIndex(rowId).data;
 
-          notificationMessage.showNotificationMessage(response.data.message, response.data.messageType);
+          $button.attr("disabled", true);
 
-          if (response.data.success) {
-            me.grid.api.purgeInfiniteCache();
-          }
-        });
-      }
+          $http.delete('/deleteUser/' + data._id).then(function (response) {
+            $button.attr("disabled", false);
+
+            notificationMessage.showNotificationMessage(response.data.message, response.data.messageType);
+
+            if (response.data.success) {
+              me.grid.api.purgeInfiniteCache();
+            }
+          });
+        }
+      }, function() {
+        $mdDialog.cancel();
+      });
     }
 
     function editRow() {
@@ -138,11 +149,19 @@
 
       var data = me.grid.api.getDisplayedRowAtIndex(rowId).data;
 
-      if ($button.is('[disabled]')) {
-        $button.attr("disabled", true);
-      }
-
-      console.log('edit');
+      $mdDialog.show({
+        controller: 'userDialogController',
+        controllerAs: 'userDialog',
+        templateUrl: 'scripts/users/userDialog.template.html',
+        bindToController: true,
+        locals: {
+          title: 'Edit user',
+          buttonLabel: 'Edit',
+          grid: me.grid,
+          user: data,
+          editMode: true
+        }
+      });
     }
   }
 })();

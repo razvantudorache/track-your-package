@@ -1,7 +1,7 @@
 <md-dialog class="userDialog">
   <div class="dialogTitle">{{::userDialog.title}}</div>
   <md-dialog-content class="dialogContent">
-    <form id="userForm" novalidate name="userForm" ng-submit="add()">
+    <form id="userForm" novalidate name="userForm" ng-submit="addOrEdit()">
       <md-content layout="row" layout-xs="column">
         <md-input-container flex>
           <label>First name</label>
@@ -28,7 +28,7 @@
         </div>
       </md-input-container>
 
-      <md-content layout="row" layout-xs="column">
+      <md-content layout="row" layout-xs="column" ng-if="::!userDialog.editMode">
         <md-input-container flex>
           <label>Password</label>
           <input name="password" type="password" required md-no-asterisk ng-model="user.password" minlength="6"
@@ -103,8 +103,6 @@
   </md-dialog-content>
   <md-dialog-actions class="dialogToolbar" layout="row">
     <md-button ng-click="closeDialog()">Cancel</md-button>
-    <md-button type="submit" form="userForm"
-               ng-disabled="buttonAddDisabled">{{::userDialog.buttonLabel}}
-    </md-button>
+    <md-button type="submit" form="userForm" ng-disabled="buttonDisabled">{{::userDialog.buttonLabel}}</md-button>
   </md-dialog-actions>
 </md-dialog>
