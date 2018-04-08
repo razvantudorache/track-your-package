@@ -17,6 +17,8 @@
       $transitions.onSuccess({}, function(trans){
         var currentState = trans.router.stateService.current;
 
+        Noty.closeAll();
+
         $scope.pageTitle = _.capitalize(currentState.name);
       });
     };
