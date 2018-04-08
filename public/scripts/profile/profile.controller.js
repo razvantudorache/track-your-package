@@ -4,9 +4,9 @@
   angular.module('trackYourPackage')
     .controller('profileController', profileController);
 
-  profileController.$inject = ['$scope', 'trackYourPackageService', '$http', '$state', '$mdDialog'];
+  profileController.$inject = ['$scope', 'trackYourPackageService', '$http', '$state', '$mdDialog', 'notificationMessage'];
 
-  function profileController($scope, trackYourPackageService, $http, $state, $mdDialog) {
+  function profileController($scope, trackYourPackageService, $http, $state, $mdDialog, notificationMessage) {
     var me = this;
 
     me.$onInit = function () {
@@ -25,8 +25,11 @@
 
       $http.post('/updateUserDetails', $scope.userDetails).then(function (response) {
         $scope.buttonSaveDisabled = false;
+        notificationMessage.showNotificationMessage(response.data.message, response.data.messageType);
 
-        trackYourPackageService.setUserDetails(response.data);
+        if (response.data.success) {
+          trackYourPackageService.setUserDetails(response.data.user);
+        }
         $state.reload();
       });
     }

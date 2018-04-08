@@ -95,7 +95,20 @@ module.exports = function (app) {
     User.findOneAndUpdate({username: request.session.user.username}, updateObject, {new: true}, function (error, user) {
       if (error) throw error;
 
-      response.json(user.toJSON());
+      if (user) {
+        response.json({
+          user: user.toJSON(),
+          success: true,
+          message: 'Details changed successfully!',
+          messageType: 'success'
+        });
+      } else {
+        response.json({
+          success: false,
+          message: 'Changing details failed!',
+          messageType: 'error'
+        });
+      }
     });
   });
 

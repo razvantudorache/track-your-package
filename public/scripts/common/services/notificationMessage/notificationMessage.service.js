@@ -11,6 +11,12 @@
     var configurationNotificationMessage = function () {
       Noty.overrideDefaults({
         theme: 'nest',
+        layout: 'topCenter',
+        progressBar: false,
+        animation: {
+          close: 'noty_effects_close',
+          open: 'noty_effects_open'
+        },
         killer: true,
         closeWith: ['button']
       });
