@@ -90,7 +90,7 @@
 
         columnTemplate = '<ul class="actionList">' +
           '                   <li class="action editRow" data-row-id="' + params.node.id + '"></li>' +
-                              deleteButton +
+          deleteButton +
           '               </ul>';
       }
 
@@ -120,25 +120,20 @@
         .ok('Yes')
         .cancel('No');
 
-      $mdDialog.show(confirm).then(function() {
-        if (!$button.is('[disabled]')) {
-          var rowId = $button.data('rowId');
+      $mdDialog.show(confirm).then(function () {
+        var rowId = $button.data('rowId');
 
-          var data = me.grid.api.getDisplayedRowAtIndex(rowId).data;
+        var data = me.grid.api.getDisplayedRowAtIndex(rowId).data;
 
-          $button.attr("disabled", true);
+        $http.delete('/deleteUser/' + data._id).then(function (response) {
 
-          $http.delete('/deleteUser/' + data._id).then(function (response) {
-            $button.attr("disabled", false);
+          notificationMessage.showNotificationMessage(response.data.message, response.data.messageType);
 
-            notificationMessage.showNotificationMessage(response.data.message, response.data.messageType);
-
-            if (response.data.success) {
-              me.grid.api.purgeInfiniteCache();
-            }
-          });
-        }
-      }, function() {
+          if (response.data.success) {
+            me.grid.api.purgeInfiniteCache();
+          }
+        });
+      }, function () {
         $mdDialog.cancel();
       });
     }

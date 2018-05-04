@@ -276,6 +276,16 @@ ag-grid {
   height: 100%;
 }
 
+// Source: public/scripts/common/services/loadingMask/loadingMask.scss
+.loadingMask {
+  display: none;
+  position: fixed;
+  top: 55px; // top bar height
+  width: 100%;
+  z-index: 1000;
+  height: 100%;
+}
+
 // Source: public/scripts/common/services/notificationMessage/notificationMessage.scss
 .noty_body {
   min-height: 50px;

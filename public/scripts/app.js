@@ -16,9 +16,9 @@
 
     .run(applicationRun);
 
-  applicationRun.$inject = ['$transitions', '$state'];
+  applicationRun.$inject = ['$transitions', '$state', 'loadingMaskService'];
 
-  function applicationRun($transitions, $state) {
+  function applicationRun($transitions, $state, loadingMaskService) {
     // redirect the user to the login page if is not authenticated to have access to the dashboard route
     $transitions.onFinish({
       entering: 'dashboard'
