@@ -723,7 +723,7 @@ var Chat = (function () {
   function socketConnect() {
     socket = io.connect(socketIOUrl, {
       'timeout': 30000,
-      'reconnectionusers-button-barAttempts': TOTAL_RECONNECT_ATTEMPTS //after 3 attempts the reconnection_failed event is triggered
+      'reconnectionAttempts': TOTAL_RECONNECT_ATTEMPTS //after 3 attempts the reconnection_failed event is triggered
     });
   }
 

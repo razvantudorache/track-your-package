@@ -182,6 +182,7 @@ textarea {
     &:hover {
       cursor: pointer;
       background-color: $materialColorGrey500;
+      color: $lightColor;
     }
   }
   #chat-main-title-label {
