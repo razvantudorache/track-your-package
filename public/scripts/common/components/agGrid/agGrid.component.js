@@ -22,7 +22,6 @@
       var defaultGridOptions = {
         columnDefs: me.gridColumns,
         onGridReady: onGridReadyHandler,
-        onGridSizeChanged: onGridSizeChangedHandler,
         animateRows: true,
         rowSelection: 'single',
         suppressContextMenu: true,
@@ -62,14 +61,6 @@
       }
 
       addRowActionsHandlers();
-    }
-
-    /**
-     * Handler when grid resize
-     * @return {void}
-     */
-    function onGridSizeChangedHandler() {
-      $scope.gridOptions.api.sizeColumnsToFit();
     }
 
     /**
