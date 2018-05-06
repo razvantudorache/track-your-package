@@ -123,8 +123,23 @@ textarea {
   display: inline-block;
   position: fixed;
   z-index: 50000;
-  bottom: 0; //this is the height of bottom bar
+  bottom: 75px;
   right: 0;
+
+  &:after {
+    //https://codepen.io/ryanmcnz/pen/JDLhu
+    content: " ";
+    position: absolute;
+    width: 0;
+    height: 0;
+    margin-left: -0.5em;
+    bottom: -20px;
+    right: 28px;
+    border: 10px solid transparent transparent $lightColor $lightColor;
+    transform-origin: 0 0;
+    transform: rotate(-45deg);
+    box-shadow: -5px 5px 16px rgba($shadowColor,.3);
+  }
   #chat-title {
     height: 31px;
     .chat-main-title {
@@ -225,6 +240,7 @@ textarea {
   #users-button-bar {
     position: absolute;
     right: 50px;
+    display: flex;
     .user-button {
       height: 40px;
       width: 40px;

@@ -1,6 +1,7 @@
 // A 100% javascript facebook/gmail style web chat.
 // (c) 2014-2015 Ezequiel Lovelle [ezequiellovelle@gmail.com]
 // released under the MIT license
+'use strict';
 
 var Chat = (function () {
   var socketIOUrl;
@@ -140,7 +141,7 @@ var Chat = (function () {
     $(document).on("click", '.close-button', closeButtonHandler);
 
     /**
-     * Click in user in chat box
+     * Click on user in chat box
      */
     $(document).on("click", ".user", userClickHandler);
 
@@ -195,6 +196,8 @@ var Chat = (function () {
 
   /** Event handlers */
   function openNewChatHandler () {
+    var $mainUsersResizer = $('#main-users-resizer');
+    $mainUsersResizer.hide();
 
     var prefix = "user-button-";
     var userId = $(this).attr("id").substring((prefix.length));
@@ -237,6 +240,9 @@ var Chat = (function () {
   }
 
   function userClickHandler () {
+    var $mainUsersResizer = $('#main-users-resizer');
+    $mainUsersResizer.hide();
+
     //Do nothing if user is offline
     if ($(this).hasClass("offline")) {
       return false;
@@ -265,6 +271,8 @@ var Chat = (function () {
   function openCharListHandler () {
     var $mainUsersResizer = $('#main-users-resizer');
     $mainUsersResizer.toggle();
+
+    $(".ui-dialog-content").dialog("close");
 
     // avoid triggering updateCharListScroll when $('#main-users-resizer') become hidden
     if ($mainUsersResizer.is(':visible')) {
