@@ -12,9 +12,17 @@
       trackYourPackageService.setMenu(user.menu);
       trackYourPackageService.setUserDetails(user.details);
 
+      var chatUser = {
+        name: user.details.firstName + ' ' + user.details.lastName,
+        avatar: "styles/images/user.png",
+        extId: user.details._id
+      };
+      Chat.init(chatUser);
+
       $scope.pageTitle = _.capitalize($state.current.name);
 
       $transitions.onSuccess({}, function(trans){
+
         var currentState = trans.router.stateService.current;
 
         Noty.closeAll();

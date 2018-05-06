@@ -8,6 +8,8 @@
 
   function logoutController($http, $state) {
     $http.get('/logout').then(function () {
+      Chat.mainChatDisconnect();
+
       $state.go('login');
     });
   }

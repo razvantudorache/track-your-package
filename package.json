@@ -50,7 +50,8 @@
     "mongoose": "^5.0.1",
     "mongoose-paginate": "^5.0.3",
     "phantomjs-prebuilt": "^2.1.5",
-    "time-grunt": "^1.0.0"
+    "time-grunt": "^1.0.0",
+    "socket.io": "2.0.3"
   },
   "engines": {
     "node": "8.9.0"

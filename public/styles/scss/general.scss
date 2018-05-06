@@ -5,13 +5,19 @@
 body {
   margin: 0;
   height: 100%;
-  background-color: #faf8f4;
+  background-color: $lightColor;
   font-family: Segoe UI, Verdana, Arial, Helvetica, sans-serif;
   overflow: hidden;
 }
 
 * {
   box-sizing: border-box;
+}
+
+input {
+  &:focus {
+    outline: none;
+  }
 }
 
 .applicationContainer {

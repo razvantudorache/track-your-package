@@ -2,7 +2,9 @@
   "name": "track-your-package",
   "version": "1.0.0",
   "dependencies": {
-    "jquery": "^1.9.1",
+    "jquery": "^3.3.1",
+    "jquery-ui": "1.12.1",
+    "jquery-slimscroll": "1.3.8",
     "angular": "1.5.11",
     "angular-animate": "1.5.11",
     "angular-loader": "1.5.11",
@@ -23,7 +25,8 @@
     "font-awesome": "Font-Awesome#5.0.8",
     "jQuery.mmenu": "mmenu#7.0.0",
     "noty": "3.1.4",
-    "ag-grid": "16.0.1"
+    "ag-grid": "16.0.1",
+    "socket.io-client": "2.0.3"
   },
   "appPath": "public",
   "moduleName": "trackYourPackage",
@@ -42,6 +45,16 @@
       "main": [
         "lib/noty.js",
         "lib/noty.css"
+      ]
+    },
+    "jquery-slimscroll": {
+      "main": [
+        "jquery.slimscroll.js"
+      ]
+    },
+    "socket.io-client": {
+      "main": [
+        "dist/socket.io.js"
       ]
     }
   }
