@@ -5,7 +5,7 @@ $lightGray: #aaaaaa;
 $chatButtonBackgroundColor: #007988;
 $hoverChatButtonBackgroundColor: #a6a6a6;
 $rightChatBackgroundColor: #3fa8f0;
-$leftChatBackgroundColor: #eeeeee;
+$leftChatBackgroundColor: #E0E0E0;
 /* End variables */
 
 li {
@@ -150,7 +150,7 @@ textarea {
         border: 1px solid $lightBorder;
       }
       .new-messages {
-        color: $materialColorGrey600;
+        color: $lightColor;
         display: none;
         background-color: $materialColorRed600;
         position: absolute;
