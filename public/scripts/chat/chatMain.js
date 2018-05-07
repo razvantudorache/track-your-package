@@ -16,6 +16,20 @@ var Chat = (function () {
     previousMessage,
     attempts;
 
+  var isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent);
+
+  var chatDialogPosition = {
+    my: "right+13 bottom-20",
+    at: "right top",
+    collision: "flip, none"
+  };
+
+  var chatDialogPositionFullScreen = {
+    my: "left top",
+    at: "left top",
+    of: window
+  };
+
   function init(chatUser) {
     chatStat = 0;
     chatReconnect = 0;
@@ -73,7 +87,7 @@ var Chat = (function () {
     if (isLocalEnvironment) {
       socketIOUrl = serverProtocol + '://' + serverAddress + ':' + serverPort
     } else {
-      socketIOUrl = '/'; //FIXME add full url environment variable CHAT_CORE_SERVER_URL
+      socketIOUrl = '/';
     }
   }
 
@@ -126,7 +140,7 @@ var Chat = (function () {
     /**
      * Open new chat
      */
-    $(document).on("click", ".user-button", openNewChatHandler);
+    $(document).on("click touch", ".user-button", openNewChatHandler);
 
     /**
      * Show the close button on hover on the user avatar
@@ -138,31 +152,31 @@ var Chat = (function () {
      */
     $(document).on("mouseout", '.user-button', hideCloseButtonHandler);
 
-    $(document).on("click", '.close-button', closeButtonHandler);
+    $(document).on("click touch", '.close-button', closeButtonHandler);
 
     /**
      * Click on user in chat box
      */
-    $(document).on("click", ".user", userClickHandler);
+    $(document).on("click touch", ".user", userClickHandler);
 
     /**
      * Bar text button open chat
      */
-    $(document).on("click", "#chat-title-button", openCharListHandler);
+    $(document).on("click touch", "#chat-title-button", openCharListHandler);
 
     /**
      * Minus icon in main chat
      */
-    $(document).on("click", "#min-main-chat", minimizeChat);
+    $(document).on("click touch", "#min-main-chat", minimizeChat);
 
-    $(document).on("click", ".reconnectLink", reconnectLinkHandler);
+    $(document).on("click touch", ".reconnectLink", reconnectLinkHandler);
   }
 
-  function destroyEvents () {
+  function destroyEvents() {
     /**
      * Open new chat
      */
-    $(document).off("click", ".user-button", openNewChatHandler);
+    $(document).off("click touch", ".user-button", openNewChatHandler);
 
     /**
      * Show the close button on hover on the user avatar
@@ -179,23 +193,23 @@ var Chat = (function () {
     /**
      * Click in user in chat box
      */
-    $(document).off("click", ".user", userClickHandler);
+    $(document).off("click touch", ".user", userClickHandler);
 
     /**
      * Bar text button open chat
      */
-    $(document).off("click", "#chat-title-button", openCharListHandler);
+    $(document).off("click touch", "#chat-title-button", openCharListHandler);
 
     /**
      * Minus icon in main chat
      */
-    $(document).off("click", "#min-main-chat", minimizeChat);
+    $(document).off("click touch", "#min-main-chat", minimizeChat);
 
-    $(document).off("click", ".reconnectLink", reconnectLinkHandler);
+    $(document).off("click touch", ".reconnectLink", reconnectLinkHandler);
   }
 
   /** Event handlers */
-  function openNewChatHandler () {
+  function openNewChatHandler() {
     var $mainUsersResizer = $('#main-users-resizer');
     $mainUsersResizer.hide();
 
@@ -209,28 +223,29 @@ var Chat = (function () {
 
     openChatBox(userId);
     //Set position
+    var position = $.extend(true, {}, chatDialogPosition, {of: this});
+    var isMobileClass = "";
+    if (isMobileDevice) {
+      position = chatDialogPositionFullScreen;
+      isMobileClass = "isMobile";
+    }
     $("#Dialog" + userId).dialog({
-      position: {
-        my: "right+13 bottom-20",
-        at: "right top",
-        of: this,
-        collision: "flip, none"
-      },
+      position: position,
       classes: {
-        "ui-dialog": "user-dialog" + userId
+        "ui-dialog": "user-dialog" + userId + " " + isMobileClass
       }
     });
   }
 
-  function showCloseButtonHandler () {
+  function showCloseButtonHandler() {
     $(this).find('.close-button').show();
   }
 
-  function hideCloseButtonHandler () {
+  function hideCloseButtonHandler() {
     $(this).find('.close-button').hide();
   }
 
-  function closeButtonHandler (e) {
+  function closeButtonHandler(e) {
     var userId = $(this).parent().attr("id").substring("user-button-".length);
 
     $("#Dialog" + userId).dialog('close');
@@ -239,7 +254,7 @@ var Chat = (function () {
     e.stopPropagation();
   }
 
-  function userClickHandler () {
+  function userClickHandler() {
     var $mainUsersResizer = $('#main-users-resizer');
     $mainUsersResizer.hide();
 
@@ -268,7 +283,7 @@ var Chat = (function () {
     return false;
   }
 
-  function openCharListHandler () {
+  function openCharListHandler() {
     var $mainUsersResizer = $('#main-users-resizer');
     $mainUsersResizer.toggle();
 
@@ -280,11 +295,11 @@ var Chat = (function () {
     }
   }
 
-  function minimizeChat () {
+  function minimizeChat() {
     $("#main-users-resizer").hide();
   }
 
-  function reconnectLinkHandler () {
+  function reconnectLinkHandler() {
     mainChatStatus('online');
   }
 
@@ -304,9 +319,9 @@ var Chat = (function () {
       resizable: false,
       modal: false,
       minHeight: 200,
-      maxHeight: 400,
-      height: "auto",
-      width: 350,
+      maxHeight: !isMobileDevice ? 400 : $(window).height(),
+      height: !isMobileDevice ? "auto" : $(window).height(),
+      width: !isMobileDevice ? 350 : $(window).width(),
 
       open: function (event, ui) {
 
@@ -384,15 +399,16 @@ var Chat = (function () {
                   recv.date = moment(recv.date).format('MMMM Do YYYY, h:mm:ss a');
                   appendMsgMe(msg, main, recv.date);
                   // Set dialog position
+                  var position = $.extend(true, {}, chatDialogPosition, {of: "#user-button-" + id});
+                  var isMobileClass = "";
+                  if (isMobileDevice) {
+                    position = chatDialogPositionFullScreen;
+                    isMobileClass = "isMobile";
+                  }
                   main.dialog({
-                    position: {
-                      my: "right+13 bottom-20",
-                      at: "right top",
-                      of: "#user-button-" + id,
-                      collision: "flip, none"
-                    },
+                    position: position,
                     classes: {
-                      "ui-dialog": "user-dialog" + id
+                      "ui-dialog": "user-dialog" + id + " " + isMobileClass
                     }
                   });
                 });
@@ -833,15 +849,16 @@ var Chat = (function () {
 
         appendMsgHe(msg, main, date);
         // Set dialog position
+        var position = $.extend(true, {}, chatDialogPosition, {of: "#user-button-" + userId});
+        var isMobileClass = "";
+        if (isMobileDevice) {
+          position = chatDialogPositionFullScreen;
+          isMobileClass = "isMobile";
+        }
         main.dialog({
-          position: {
-            my: "right+13 bottom-20",
-            at: "right top",
-            of: "#user-button-" + userId,
-            collision: "flip, none"
-          },
+          position: position,
           classes: {
-            "ui-dialog": "user-dialog" + userId
+            "ui-dialog": "user-dialog" + userId + " " + isMobileClass
           }
         });
         break;

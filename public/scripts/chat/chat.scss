@@ -20,7 +20,7 @@ textarea {
 #main-users-resizer {
   font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   background-color: $lightColor;
-  @include shadowLevel-5;
+  @include shadowLevel-4;
   width: 250px;
   max-height: 75%;
   min-height: 25%;
@@ -36,13 +36,12 @@ textarea {
     position: absolute;
     width: 0;
     height: 0;
-    margin-left: -0.5em;
     bottom: -20px;
-    right: 28px;
+    right: 30px;
     border: 10px solid transparent transparent $lightColor $lightColor;
     transform-origin: 0 0;
     transform: rotate(-45deg);
-    box-shadow: -5px 5px 16px rgba($shadowColor,.3);
+    box-shadow: -3px 3px 6px 0 rgba($shadowColor,.3);
   }
   #chat-title {
     height: 31px;
@@ -213,6 +212,12 @@ textarea {
   overflow: visible;
   background: $lightColor;
   @include shadowLevel-5;
+  &.isMobile {
+    &:after, &:before {
+      content: none;
+    }
+  }
+
   &:after {
     top: 100%;
     right: 19px;
