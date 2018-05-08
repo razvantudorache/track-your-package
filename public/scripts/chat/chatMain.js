@@ -43,7 +43,7 @@ var Chat = (function () {
     });
 
     var xhrMainChat = $.get("mainChat.html", function (mainChat) {
-      $("body").append(mainChat);
+      $(".mainContainer").after(mainChat);
     });
 
     $.when(xhrToolbar, xhrMainChat).done(initChatDependencies).fail(function () {
