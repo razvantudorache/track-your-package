@@ -64,19 +64,6 @@
           }
         }]
       })
-      .state('statistics', {
-        url: '/statistics',
-        parent: 'dashboard',
-        templateUrl: 'scripts/statistics/statistics.template.html',
-        controller: 'statisticsController',
-        onEnter: ["$state", function ($state) {
-          if (userRole === 'courier') {
-            return $state.target('dashboard');
-          } else {
-            return true;
-          }
-        }]
-      })
       .state('packages', {
         url: '/packages',
         parent: 'dashboard',
