@@ -106,6 +106,10 @@ module.exports = function (server) {
         }));
       }
     });
+
+    // Event received when the user location is send to server
+    socket.on('userLocation', function (location) {
+    });
   });
 };
 
