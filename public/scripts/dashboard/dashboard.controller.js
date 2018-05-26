@@ -4,8 +4,8 @@
   angular.module("trackYourPackage")
     .controller('dashboardController', dashboardController);
 
-  dashboardController.$inject = ['trackYourPackageService', 'user', '$state', '$stateRegistry', '$transitions', '$scope'];
-  function dashboardController(trackYourPackageService, user, $state, $stateRegistry, $transitions, $scope) {
+  dashboardController.$inject = ['trackYourPackageService', 'user', '$state', '$stateRegistry', '$transitions', '$scope', 'chatService'];
+  function dashboardController(trackYourPackageService, user, $state, $stateRegistry, $transitions, $scope, chatService) {
     var me = this;
 
     me.$onInit = function () {
@@ -17,7 +17,7 @@
       //   avatar: "styles/images/user.png",
       //   extId: user.details._id
       // };
-      // Chat.init(chatUser);
+      // chatService.init(chatUser);
 
       $scope.pageTitle = _.capitalize($state.current.name);
 

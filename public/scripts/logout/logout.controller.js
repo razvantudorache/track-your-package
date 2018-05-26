@@ -4,11 +4,11 @@
   angular.module('trackYourPackage')
     .controller('logoutController', logoutController);
 
-  logoutController.$inject = ['$http', '$state'];
+  logoutController.$inject = ['$http', '$state', 'chatService'];
 
-  function logoutController($http, $state) {
+  function logoutController($http, $state, chatService) {
     $http.get('/logout').then(function () {
-      Chat.mainChatDisconnect();
+      chatService.disconnect();
 
       $state.go('login');
     });
