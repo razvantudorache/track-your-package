@@ -10,6 +10,7 @@
     "bcrypt": "^1.0.3",
     "body-parser": "^1.18.2",
     "bower": "^1.8.2",
+    "browser-sync": "^2.24.4",
     "cssnano": "^3.7.4",
     "express": "^4.16.2",
     "express-session": "^1.15.6",
@@ -50,8 +51,8 @@
     "mongoose": "^5.0.1",
     "mongoose-paginate": "^5.0.3",
     "phantomjs-prebuilt": "^2.1.5",
-    "time-grunt": "^1.0.0",
-    "socket.io": "2.0.3"
+    "socket.io": "2.0.3",
+    "time-grunt": "^1.0.0"
   },
   "engines": {
     "node": "8.9.0"
