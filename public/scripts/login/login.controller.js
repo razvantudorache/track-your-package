@@ -31,6 +31,8 @@
           $scope.disableLoginButton = false;
 
           if (response.data.success) {
+            Noty.closeAll();
+
             $state.go('dashboard');
           } else {
             notificationMessage.showNotificationMessage(response.data.message, response.data.messageType);
