@@ -4,9 +4,9 @@
   angular.module('trackYourPackage')
     .controller('usersController', usersController);
 
-  usersController.$inject = ['$scope', '$mdDialog', 'trackYourPackageService', '$http', 'notificationMessage'];
+  usersController.$inject = ['$scope', '$mdDialog', 'trackYourPackageService', '$http', 'notificationMessage', 'trackYourPackageConst'];
 
-  function usersController($scope, $mdDialog, trackYourPackageService, $http, notificationMessage) {
+  function usersController($scope, $mdDialog, trackYourPackageService, $http, notificationMessage, trackYourPackageConst) {
     var me = this;
 
     me.$onInit = function () {
@@ -62,6 +62,12 @@
           headerName: 'Company ID',
           field: 'companyID',
           minWidth: 150
+        },
+        {
+          headerName: 'Last modification',
+          field: 'lastModification',
+          cellRenderer: lastModificationFormat,
+          minWidth: 150
         }
       ];
       me.gridProperties = {
@@ -74,6 +80,17 @@
         deleteRow: deleteRow,
         editRow: editRow
       }
+    }
+
+    function lastModificationFormat(params) {
+      var template = '';
+
+      if (params.data) {
+        var formatData = moment(params.data.lastModification).format(trackYourPackageConst.DATE_FORMAT);
+        template = '<span>' + formatData + '</span>';
+      }
+
+      return template;
     }
 
     function actionColumnRenderer(params) {

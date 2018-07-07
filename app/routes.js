@@ -7,6 +7,7 @@ var _ = require('lodash');
 var bcrypt = require('bcrypt');
 var saltRounds = 10;
 var requireLogin = require('./requireLogin');
+var moment = require('moment');
 
 module.exports = function (app) {
 
@@ -81,12 +82,16 @@ module.exports = function (app) {
   // update the user details from the profile page
   app.post('/updateUserDetails', requireLogin, function (request, response) {
     var userDetails = request.body.user;
+
+    var date = moment.utc().startOf('day').format();
+
     var updateObject = {
       firstName: userDetails.firstName,
       lastName: userDetails.lastName,
       email: userDetails.email,
       phone: userDetails.phone,
-      username: userDetails.username
+      username: userDetails.username,
+      lastModification: date
     };
 
     if (request.session.user !== 'courier') {
@@ -126,7 +131,10 @@ module.exports = function (app) {
           if (res) {
             bcrypt.genSalt(saltRounds, function (err, salt) {
               bcrypt.hash(newPassword, salt, function (err, hash) {
-                User.findOneAndUpdate({username: request.session.user.username}, {password: hash}, function (error, res) {
+                User.findOneAndUpdate({username: request.session.user.username}, {
+                  password: hash,
+                  lastModification: moment.utc().startOf('day').format()
+                }, function (error, res) {
                     response.json({
                       success: true,
                       message: 'Password changed successfully!',
@@ -193,6 +201,8 @@ module.exports = function (app) {
       userData.companyID = request.session.user.companyID;
       userData.address = request.session.user.address;
     }
+
+    userData.lastModification = moment.utc().startOf('day').format();
 
     var isUserDataValid = true;
     for (var key in userData) {

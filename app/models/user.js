@@ -18,7 +18,8 @@ var userSchema = new Schema({
   "email": String,
   "phone": Number,
   "companyID": Number,
-  "role": String
+  "role": String,
+  "lastModification": Date
 });
 
 userSchema.plugin(mongoosePaginate);
