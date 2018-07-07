@@ -68,7 +68,8 @@
         url: '/packages',
         parent: 'dashboard',
         templateUrl: 'scripts/packages/packages.template.html',
-        controller: 'packagesController'
+        controller: 'packagesController',
+        controllerAs: 'packages'
       })
       .state('logout', {
         url: '/logout',

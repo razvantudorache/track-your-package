@@ -1,1 +1,9 @@
-<div>Under construction - Packages</div>
+<div class="packagesContainer">
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <md-button ng-click="addPackage()">Add package</md-button>
+    </div>
+  </md-toolbar>
+  <ag-grid grid-columns="::packages.gridColumns" grid-properties="::packages.gridProperties" grid="packages.grid"
+           row-actions="::packages.rowActions"></ag-grid>
+</div>

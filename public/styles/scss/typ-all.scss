@@ -93,7 +93,191 @@ md-toolbar {
   min-height: 30px;
 }
 
-// Source: public/scripts/chat/chat.scss
+// Source: public/scripts/common/components/agGrid/agGrid.scss
+ag-grid {
+  height: 100%;
+  flex: 1;
+  .agGrid {
+    height: 100%;
+    .ag-header {
+      margin-top: 1px;
+      @include box-shadowLevel1;
+    }
+    .ag-body {
+      margin-top: 2px;
+      .actionColumn {
+        .actionList {
+          margin: 0;
+          padding: 0;
+          list-style: none;
+          .action {
+            cursor: pointer;
+            display: inline-block;
+            &:before {
+              font-family: 'Font Awesome 5 Free';
+              font-size: 20px;
+            }
+            &.editRow {
+              &:before {
+                content: '\f044';
+                margin-right: 15px;
+              }
+            }
+            &.deleteRow {
+              &:before {
+                content: '\f2ed';
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .ag-theme-material {
+    font-family: Segoe UI, Verdana, Arial, Helvetica, sans-serif;
+  }
+}
+
+
+// Source: public/scripts/common/components/topBar/topBar.scss
+.topBarContainer {
+  height: 55px;
+  background-color: $materialColorBlue800;
+  @include shadowLevel-2;
+  .pageTitle {
+    display: inline-flex;
+    align-items: center;
+    font-size: 25px;
+    color: $lightColor;
+    margin-left: 20px;
+  }
+  .userIcon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    float: right;
+    height: 45px;
+    width: 45px;
+    margin-right: 35px;
+    margin-top: 5px;
+    background-color: $lightColor;
+    &:before {
+      font-family: 'Font Awesome 5 Free';
+      font-weight: 900;
+      content: '\f2bd';
+      font-size: 46px;
+      color: $materialColorGrey500;
+    }
+  }
+  .user {
+    font-size: 19px;
+    color: $lightColor;
+    float: right;
+    margin-right: 15px;
+    height: 100%;
+    display: inline-flex;
+    align-items: center;
+    &:hover {
+      cursor: pointer;
+      text-decoration: underline;
+    }
+  }
+}
+
+
+// Source: public/scripts/common/components/topMenu/topMenu.scss
+.topMenuIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 40px;
+  padding: 5px 0;
+  margin-left: 25px;
+  color: $lightColor;
+  &:before {
+    font-family: 'Font Awesome 5 Free';
+    content: '\f0c9';
+    font-size: 25px;
+    font-weight: 900;
+  }
+  &:hover {
+    color: $materialColorGrey300;
+    cursor: pointer;
+  }
+}
+
+.mm-menu {
+  width: 300px;
+  min-width: 300px;
+  max-width: 300px;
+  height: auto;
+  max-height: 350px;
+  @include shadowLevel-1;
+  .mm-navbar .mm-navbar__title {
+    color: $materialColorGrey800;
+  }
+  .topMenuContainer {
+    .mm-listitem {
+      cursor: pointer;
+      color: $materialColorGrey800;
+      .menuItem {
+        display: flex;
+        align-items: center;
+        &:before {
+          font-family: 'Font Awesome 5 Free';
+          font-size: 25px;
+          margin-right: 10px;
+          height: 25px;
+          width: 25px;
+          text-align: center;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        &.dashboard{
+          &:before {
+            content: '\f26c';
+            font-weight: 900;
+          }
+        }
+        &.profile {
+          &:before {
+            content: '\f007';
+          }
+        }
+        &.users {
+          &:before {
+            content: '\f0c0';
+            font-weight: 900;
+          }
+        }
+        &.packages {
+          &:before {
+            font-family: 'Font Awesome 5 Brands';
+            content: '\f16b';
+          }
+        }
+        &.logout {
+          &:before {
+            font-family: 'Font Awesome 5 Free';
+            content: '\f2f5';
+            font-weight: 900;
+          }
+        }
+      }
+
+    }
+
+  }
+}
+
+.mm-slideout {
+  height: 100%;
+}
+
+// Source: public/scripts/common/services/chat/chat.scss
 /* Variables */
 $botColor: #8bc34a;
 $toolbarChatColor: #2196f3;
@@ -512,190 +696,6 @@ textarea {
 }
 
 
-// Source: public/scripts/common/components/agGrid/agGrid.scss
-ag-grid {
-  height: 100%;
-  flex: 1;
-  .agGrid {
-    height: 100%;
-    .ag-header {
-      margin-top: 1px;
-      @include box-shadowLevel1;
-    }
-    .ag-body {
-      margin-top: 2px;
-      .actionColumn {
-        .actionList {
-          margin: 0;
-          padding: 0;
-          list-style: none;
-          .action {
-            cursor: pointer;
-            display: inline-block;
-            &:before {
-              font-family: 'Font Awesome 5 Free';
-              font-size: 20px;
-            }
-            &.editRow {
-              &:before {
-                content: '\f044';
-                margin-right: 15px;
-              }
-            }
-            &.deleteRow {
-              &:before {
-                content: '\f2ed';
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-  .ag-theme-material {
-    font-family: Segoe UI, Verdana, Arial, Helvetica, sans-serif;
-  }
-}
-
-
-// Source: public/scripts/common/components/topBar/topBar.scss
-.topBarContainer {
-  height: 55px;
-  background-color: $materialColorBlue800;
-  @include shadowLevel-2;
-  .pageTitle {
-    display: inline-flex;
-    align-items: center;
-    font-size: 25px;
-    color: $lightColor;
-    margin-left: 20px;
-  }
-  .userIcon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    float: right;
-    height: 45px;
-    width: 45px;
-    margin-right: 35px;
-    margin-top: 5px;
-    background-color: $lightColor;
-    &:before {
-      font-family: 'Font Awesome 5 Free';
-      font-weight: 900;
-      content: '\f2bd';
-      font-size: 46px;
-      color: $materialColorGrey500;
-    }
-  }
-  .user {
-    font-size: 19px;
-    color: $lightColor;
-    float: right;
-    margin-right: 15px;
-    height: 100%;
-    display: inline-flex;
-    align-items: center;
-    &:hover {
-      cursor: pointer;
-      text-decoration: underline;
-    }
-  }
-}
-
-
-// Source: public/scripts/common/components/topMenu/topMenu.scss
-.topMenuIcon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  width: 40px;
-  padding: 5px 0;
-  margin-left: 25px;
-  color: $lightColor;
-  &:before {
-    font-family: 'Font Awesome 5 Free';
-    content: '\f0c9';
-    font-size: 25px;
-    font-weight: 900;
-  }
-  &:hover {
-    color: $materialColorGrey300;
-    cursor: pointer;
-  }
-}
-
-.mm-menu {
-  width: 300px;
-  min-width: 300px;
-  max-width: 300px;
-  height: auto;
-  max-height: 350px;
-  @include shadowLevel-1;
-  .mm-navbar .mm-navbar__title {
-    color: $materialColorGrey800;
-  }
-  .topMenuContainer {
-    .mm-listitem {
-      cursor: pointer;
-      color: $materialColorGrey800;
-      .menuItem {
-        display: flex;
-        align-items: center;
-        &:before {
-          font-family: 'Font Awesome 5 Free';
-          font-size: 25px;
-          margin-right: 10px;
-          height: 25px;
-          width: 25px;
-          text-align: center;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-        &.dashboard{
-          &:before {
-            content: '\f26c';
-            font-weight: 900;
-          }
-        }
-        &.profile {
-          &:before {
-            content: '\f007';
-          }
-        }
-        &.users {
-          &:before {
-            content: '\f0c0';
-            font-weight: 900;
-          }
-        }
-        &.packages {
-          &:before {
-            font-family: 'Font Awesome 5 Brands';
-            content: '\f16b';
-          }
-        }
-        &.logout {
-          &:before {
-            font-family: 'Font Awesome 5 Free';
-            content: '\f2f5';
-            font-weight: 900;
-          }
-        }
-      }
-
-    }
-
-  }
-}
-
-.mm-slideout {
-  height: 100%;
-}
-
 // Source: public/scripts/common/services/loadingMask/loadingMask.scss
 .loadingMask {
   display: none;
@@ -766,6 +766,16 @@ ag-grid {
     }
   }
 }
+
+// Source: public/scripts/packages/packages.scss
+.packagesContainer {
+  flex: 1;
+  margin: 1px 25px 10px 25px;
+  @include shadowLevel-2;
+  display: flex;
+  flex-direction: column;
+}
+
 
 // Source: public/scripts/profile/changePasswordDialog.scss
 .changePasswordDialog {

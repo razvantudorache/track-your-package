@@ -1,0 +1,8 @@
+.packagesContainer {
+  flex: 1;
+  margin: 1px 25px 10px 25px;
+  @include shadowLevel-2;
+  display: flex;
+  flex-direction: column;
+}
+
